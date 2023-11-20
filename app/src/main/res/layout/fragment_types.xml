@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center_horizontal"
+    android:orientation="vertical"
+    android:padding="20dp"
+    tools:context=".types">
+
+    <!-- TODO: Update blank fragment layout -->
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:duplicateParentState="false"
+        android:fontFamily="casual"
+        android:gravity="center_horizontal"
+        android:text="@string/hello_blank_fragment"
+        android:textSize="60sp" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center_vertical"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/btnCouleurs"
+                android:layout_width="wrap_content"
+                android:layout_height="80dp"
+                android:layout_margin="5dp"
+                android:layout_weight="1"
+                android:backgroundTint="#673AB7"
+                android:text="Niveau 1"
+                app:cornerRadius="10dp" />
+
+            <Button
+                android:id="@+id/btnVetements"
+                android:layout_width="wrap_content"
+                android:layout_height="80dp"
+                android:layout_margin="5dp"
+                android:layout_weight="1"
+                android:backgroundTint="#8BC34A"
+                android:text="Niveau 2"
+                app:cornerRadius="10dp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/btnAnimaux"
+                android:layout_width="match_parent"
+                android:layout_height="80dp"
+                android:layout_margin="5dp"
+                android:layout_weight="1"
+                android:backgroundTint="#FF9800"
+                android:text="Niveau 3"
+                app:cornerRadius="10dp" />
+
+            <Button
+                android:id="@+id/btnPartiesCorps"
+                android:layout_width="match_parent"
+                android:layout_height="80dp"
+                android:layout_margin="5dp"
+                android:layout_weight="1"
+                android:backgroundTint="#2196F3"
+                android:text="Niveau 4"
+                app:cornerRadius="10dp" />
+
+        </LinearLayout>
+    </LinearLayout>
+
+
+</LinearLayout>
