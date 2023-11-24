@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">PetitLingo</string>
+    <string name="hello_blank_fragment">No sé que iba aquí</string>
+    <string name="choix_fragment">No sé que iba aquí</string>
 </resources>

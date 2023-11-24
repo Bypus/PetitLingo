@@ -28,7 +28,7 @@ public class TypesFragment extends Fragment {
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        Button btnNvl1 = view.findViewById(R.id.btnNvl1);
+        Button btnNvl1 = view.findViewById(R.id.btnLvl1);
         btnNvl1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
