@@ -12,7 +12,7 @@ import androidx.fragment.app.Fragment;
 
 public class TypesFragment extends Fragment {
 
-    public TypesFragment() {
+    public TypesFragment(String categorie) {
         // Required empty public constructor
     }
 
@@ -28,42 +28,8 @@ public class TypesFragment extends Fragment {
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        Button btnLvl1 = view.findViewById(R.id.btnLvl1);
-        Button btnLvl2 = view.findViewById(R.id.btnLvl2);
-        Button btnLvl3 = view.findViewById(R.id.btnLvl3);
-        Button btnLvl4 = view.findViewById(R.id.btnLvl4);
-
-        btnLvl1.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                // Muestra la vista de temas
-                getActivity().getSupportFragmentManager().beginTransaction()
-                        .replace(R.id.fragmentContainerView, new Nvl1Fragment())
-                        .addToBackStack(null)  // Opcional: agrega la transacción al back stack
-                        .commit();
-            }
-        });
-        btnLvl2.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                // Muestra la vista de temas
-                getActivity().getSupportFragmentManager().beginTransaction()
-                        .replace(R.id.fragmentContainerView, new Nvl1Fragment())
-                        .addToBackStack(null)  // Opcional: agrega la transacción al back stack
-                        .commit();
-            }
-        });
-        btnLvl3.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                // Muestra la vista de temas
-                getActivity().getSupportFragmentManager().beginTransaction()
-                        .replace(R.id.fragmentContainerView, new Nvl1Fragment())
-                        .addToBackStack(null)  // Opcional: agrega la transacción al back stack
-                        .commit();
-            }
-        });
-        btnLvl4.setOnClickListener(new View.OnClickListener() {
+        Button btnNvl1 = view.findViewById(R.id.btnNvl1);
+        btnNvl1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 // Muestra la vista de temas

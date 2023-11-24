@@ -63,9 +63,11 @@ public class WelcomeFragment extends Fragment {
             public void onClick(View view) {
                 FragmentManager fragmentManager = getParentFragmentManager();
                 FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-                TypesFragment typesFragment = new TypesFragment();
+                TypesFragment typesFragment = new TypesFragment("CatCouleurs");
 
                 fragmentTransaction.replace(R.id.fragmentContainerView, typesFragment);
+                // Ajouter à la pile de retour en arrière si nécessaire
+                fragmentTransaction.addToBackStack(null);
                 fragmentTransaction.commit();
             }
         });
@@ -75,9 +77,11 @@ public class WelcomeFragment extends Fragment {
             public void onClick(View view) {
                 FragmentManager fragmentManager = getParentFragmentManager();
                 FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-                TypesFragment typesFragment = new TypesFragment();
+                TypesFragment typesFragment = new TypesFragment("CatVetements");
 
                 fragmentTransaction.replace(R.id.fragmentContainerView, typesFragment);
+                // Ajouter à la pile de retour en arrière si nécessaire
+                fragmentTransaction.addToBackStack(null);
                 fragmentTransaction.commit();
             }
         });
@@ -87,9 +91,11 @@ public class WelcomeFragment extends Fragment {
             public void onClick(View view) {
                 FragmentManager fragmentManager = getParentFragmentManager();
                 FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-                TypesFragment typesFragment = new TypesFragment();
+                TypesFragment typesFragment = new TypesFragment("CatAnimaux");
 
                 fragmentTransaction.replace(R.id.fragmentContainerView, typesFragment);
+                // Ajouter à la pile de retour en arrière si nécessaire
+                fragmentTransaction.addToBackStack(null);
                 fragmentTransaction.commit();
             }
         });
