@@ -58,19 +58,41 @@ public class WelcomeFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         binding.CatCouleurs.setEnabled(true);
+        binding.CatCouleurs.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                FragmentManager fragmentManager = getParentFragmentManager();
+                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                TypesFragment typesFragment = new TypesFragment();
 
-//        binding.playButton.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                FragmentManager fragmentManager = getParentFragmentManager();
-//                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-//                CalculFragment calculFragment = CalculFragment.newInstance();
-//                fragmentTransaction.add(R.id.fragmentContainerView, calculFragment);
-//                fragmentTransaction.commit();
-//            }
-//        });
+                fragmentTransaction.replace(R.id.fragmentContainerView, typesFragment);
+                fragmentTransaction.commit();
+            }
+        });
         binding.CatVetements.setEnabled(true);
+        binding.CatVetements.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                FragmentManager fragmentManager = getParentFragmentManager();
+                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                TypesFragment typesFragment = new TypesFragment();
+
+                fragmentTransaction.replace(R.id.fragmentContainerView, typesFragment);
+                fragmentTransaction.commit();
+            }
+        });
         binding.CatAnimaux.setEnabled(true);
+        binding.CatAnimaux.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                FragmentManager fragmentManager = getParentFragmentManager();
+                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                TypesFragment typesFragment = new TypesFragment();
+
+                fragmentTransaction.replace(R.id.fragmentContainerView, typesFragment);
+                fragmentTransaction.commit();
+            }
+        });
 
     }
 }
