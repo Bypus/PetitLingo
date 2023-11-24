@@ -63,7 +63,7 @@ public class WelcomeFragment extends Fragment {
             public void onClick(View view) {
                 FragmentManager fragmentManager = getParentFragmentManager();
                 FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-                TypesFragment typesFragment = new TypesFragment("CatCouleurs");
+                TypesFragment typesFragment = new TypesFragment();
 
                 fragmentTransaction.replace(R.id.fragmentContainerView, typesFragment);
                 // Ajouter à la pile de retour en arrière si nécessaire
@@ -77,7 +77,7 @@ public class WelcomeFragment extends Fragment {
             public void onClick(View view) {
                 FragmentManager fragmentManager = getParentFragmentManager();
                 FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-                TypesFragment typesFragment = new TypesFragment("CatVetements");
+                TypesFragment typesFragment = new TypesFragment();
 
                 fragmentTransaction.replace(R.id.fragmentContainerView, typesFragment);
                 // Ajouter à la pile de retour en arrière si nécessaire
@@ -91,7 +91,7 @@ public class WelcomeFragment extends Fragment {
             public void onClick(View view) {
                 FragmentManager fragmentManager = getParentFragmentManager();
                 FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-                TypesFragment typesFragment = new TypesFragment("CatAnimaux");
+                TypesFragment typesFragment = new TypesFragment();
 
                 fragmentTransaction.replace(R.id.fragmentContainerView, typesFragment);
                 // Ajouter à la pile de retour en arrière si nécessaire
