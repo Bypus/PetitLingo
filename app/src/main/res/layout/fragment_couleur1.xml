@@ -1,26 +1,68 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Couleur1">
+    android:orientation="vertical"
+    android:gravity="center">
 
-    <!-- TODO: Update blank fragment layout -->
+    <!-- Titre centré en haut -->
     <TextView
+        android:id="@+id/trueColorText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Mon Titre"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        android:layout_gravity="center"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="16dp"/>
+
+    <!-- 4 ronds de couleurs alignés en dessous -->
+
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="horizontal">
 
-    <shape xmlns:android="http://schemas.android.com/apk/res/android"
-        android:shape="oval">
+        <!-- Premier rond de couleur -->
+        <View
+            android:id="@+id/color1"
+            android:layout_width="120dp"
+            android:layout_height="120dp"
+            android:layout_margin="8dp"
+            android:background="@drawable/circle" />
 
-        <solid android:color="@color/colorRed" />
+        <!-- Deuxième rond de couleur -->
+        <View
+            android:id="@+id/color2"
+            android:layout_width="120dp"
+            android:layout_height="120dp"
+            android:layout_margin="8dp"
+            android:background="@drawable/circle" />
+    </LinearLayout>
 
-        <!-- Vous pouvez ajuster la taille du rond avec les attributs suivants -->
-        <size
-            android:width="100dp"
-            android:height="100dp" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center">
 
-    </shape>
+        <!-- Troisième rond de couleur -->
+        <View
+            android:id="@+id/color3"
+            android:layout_width="120dp"
+            android:layout_height="120dp"
+            android:layout_margin="8dp"
+            android:background="@drawable/circle"/>
 
-</FrameLayout>
+        <!-- Quatrième rond de couleur -->
+        <View
+            android:id="@+id/color4"
+            android:layout_width="120dp"
+            android:layout_height="120dp"
+            android:layout_margin="8dp"
+            android:background="@drawable/circle"/>
+    </LinearLayout>
+
+</LinearLayout>

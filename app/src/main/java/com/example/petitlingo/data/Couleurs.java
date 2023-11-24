@@ -9,10 +9,10 @@ public class Couleurs {
         Map<String, Map<String, String>> colorsMap = new HashMap<>();
 
         // Ajouter les données au tableau
-        addData(colorsMap, "rouge", "@color/colorRed", "red");
-        addData(colorsMap, "bleu", "@color/colorBlue", "blue");
-        addData(colorsMap, "jaune", "@color/colorYellow", "yellow");
-        addData(colorsMap, "vert", "@color/colorGreen", "green");
+        addData(colorsMap, "rouge", "#FF0000", "red");
+        addData(colorsMap, "bleu", "#0000FF", "blue");
+        addData(colorsMap, "jaune", "#FFFF00", "yellow");
+        addData(colorsMap, "vert", "#00FF00", "green");
 
         // Accéder aux données dans le tableau
         String redColor = getData(colorsMap, "rouge", "color");
@@ -24,7 +24,7 @@ public class Couleurs {
     }
 
     // Méthode pour ajouter des données au tableau associatif
-    private static void addData(Map<String, Map<String, String>> colorsMap,
+    public static void addData(Map<String, Map<String, String>> colorsMap,
                                 String key, String color, String text) {
         Map<String, String> colorData = new HashMap<>();
         colorData.put("color", color);
@@ -33,7 +33,7 @@ public class Couleurs {
     }
 
     // Méthode pour obtenir des données du tableau associatif
-    private static String getData(Map<String, Map<String, String>> colorsMap,
+    public static String getData(Map<String, Map<String, String>> colorsMap,
                                   String key, String subKey) {
         if (colorsMap.containsKey(key)) {
             Map<String, String> colorData = colorsMap.get(key);
