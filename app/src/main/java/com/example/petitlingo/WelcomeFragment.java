@@ -65,7 +65,7 @@ public class WelcomeFragment extends Fragment {
                 FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
                 TypesFragment typesFragment = new TypesFragment();
 
-                fragmentTransaction.add(R.id.fragmentContainerView, typesFragment);
+                fragmentTransaction.replace(R.id.fragmentContainerView, typesFragment);
                 fragmentTransaction.commit();
             }
         });
@@ -77,7 +77,7 @@ public class WelcomeFragment extends Fragment {
                 FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
                 TypesFragment typesFragment = new TypesFragment();
 
-                fragmentTransaction.add(R.id.fragmentContainerView, typesFragment);
+                fragmentTransaction.replace(R.id.fragmentContainerView, typesFragment);
                 fragmentTransaction.commit();
             }
         });
@@ -89,7 +89,7 @@ public class WelcomeFragment extends Fragment {
                 FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
                 TypesFragment typesFragment = new TypesFragment();
 
-                fragmentTransaction.add(R.id.fragmentContainerView, typesFragment);
+                fragmentTransaction.replace(R.id.fragmentContainerView, typesFragment);
                 fragmentTransaction.commit();
             }
         });
