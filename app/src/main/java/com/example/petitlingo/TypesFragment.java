@@ -12,7 +12,7 @@ import androidx.fragment.app.Fragment;
 
 public class TypesFragment extends Fragment {
 
-    public TypesFragment() {
+    public TypesFragment(String categorie) {
         // Required empty public constructor
     }
 
@@ -34,7 +34,7 @@ public class TypesFragment extends Fragment {
             public void onClick(View v) {
                 // Muestra la vista de temas
                 getActivity().getSupportFragmentManager().beginTransaction()
-                        .replace(R.id.fragment_container, new Nvl1Fragment())
+                        .replace(R.id.fragmentContainerView, new Nvl1Fragment())
                         .addToBackStack(null)  // Opcional: agrega la transacción al back stack
                         .commit();
             }
