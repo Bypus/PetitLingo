@@ -9,6 +9,10 @@ import android.widget.Button;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
+
+import com.example.petitlingo.couleurs.Couleur1;
 
 public class TypesFragment extends Fragment {
 
@@ -36,11 +40,12 @@ public class TypesFragment extends Fragment {
         btnLvl1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // Muestra la vista de temas
-                getActivity().getSupportFragmentManager().beginTransaction()
-                        .replace(R.id.fragmentContainerView, new Nvl1Fragment())
-                        .addToBackStack(null)  // Opcional: agrega la transacción al back stack
-                        .commit();
+                FragmentManager fragmentManager = getParentFragmentManager();
+                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                Couleur1 couleur1 = new Couleur1();
+
+                fragmentTransaction.replace(R.id.fragmentContainerView, couleur1);
+                fragmentTransaction.commit();
             }
         });
         btnLvl2.setOnClickListener(new View.OnClickListener() {

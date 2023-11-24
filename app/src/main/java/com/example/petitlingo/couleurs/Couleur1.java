@@ -1,7 +1,7 @@
 package com.example.petitlingo.couleurs;
 
 import android.annotation.SuppressLint;
-import android.app.Fragment;
+import androidx.fragment.app.Fragment;
 import android.graphics.Color;
 import android.os.Bundle;
 
@@ -12,6 +12,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 
 import com.example.petitlingo.R;
+import com.example.petitlingo.WelcomeFragment;
 import com.example.petitlingo.data.Couleurs;
 
 import java.util.Map;
@@ -29,16 +30,15 @@ public class Couleur1 extends Fragment {
     private ImageView color3View;
     private ImageView color4View;
     private static Map<String, Map<String, String>> colorsMap;
-    public static Couleurs couleurs;
 
     private String randomColor1;
     private String randomColor2;
     private String randomColor3;
     private String trueColor;
 
-    @SuppressLint("ValidFragment")
-    public Couleur1(Couleurs couleurs) {
-        this.couleurs = couleurs;
+
+    public Couleur1 newInstance() {
+        Couleur1 fragment = new Couleur1();
 
         this.randomColor1 = ColorPicker.pickRandomColor(colorsMap);
         this.randomColor2 = ColorPicker.pickRandomColor(colorsMap);
@@ -53,13 +53,17 @@ public class Couleur1 extends Fragment {
         while (Objects.equals(this.trueColor, this.randomColor1) || Objects.equals(this.trueColor, this.randomColor2) || Objects.equals(this.trueColor, this.randomColor3)){
             this.trueColor = ColorPicker.pickRandomColor(colorsMap);
         }
+
+        return fragment;
+    }
+    public Couleur1() {
     }
 
     public static String getColorCode(String whichColor){
-        return couleurs.getData(colorsMap, whichColor, "code");
+        return Couleurs.getData(colorsMap, whichColor, "code");
     }
     public static String getColorText(String whichColor){
-        return couleurs.getData(colorsMap, whichColor, "text");
+        return Couleurs.getData(colorsMap, whichColor, "text");
     }
 
 
@@ -68,10 +72,10 @@ public class Couleur1 extends Fragment {
         View rootView = inflater.inflate(R.layout.fragment_couleur1, container, false);
 
         // Initialisez vos ImageView
-        color1View = rootView.findViewById(R.id.color1);
-        color2View = rootView.findViewById(R.id.color2);
-        color3View = rootView.findViewById(R.id.color3);
-        color4View = rootView.findViewById(R.id.color4);
+//        color1View = rootView.findViewById(R.id.color1);
+//        color2View = rootView.findViewById(R.id.color2);
+//        color3View = rootView.findViewById(R.id.color3);
+//        color4View = rootView.findViewById(R.id.color4);
 
         // Utiliser les méthodes pour obtenir le code de chaque couleur
         // Génération d'un nombre aléatoire entre 1 et 4 pour décider de la bonne couleur
