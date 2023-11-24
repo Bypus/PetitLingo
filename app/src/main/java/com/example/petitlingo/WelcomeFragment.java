@@ -57,7 +57,7 @@ public class WelcomeFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        binding.playButton.setEnabled(true);
+        binding.CatCouleurs.setEnabled(true);
 
 //        binding.playButton.setOnClickListener(new View.OnClickListener() {
 //            @Override
@@ -69,5 +69,8 @@ public class WelcomeFragment extends Fragment {
 //                fragmentTransaction.commit();
 //            }
 //        });
+        binding.CatVetements.setEnabled(true);
+        binding.CatAnimaux.setEnabled(true);
+
     }
 }
