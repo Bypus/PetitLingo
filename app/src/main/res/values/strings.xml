@@ -1,5 +1,5 @@
 <resources>
     <string name="app_name">PetitLingo</string>
     <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Choisir le niveau</string>
+    <string name="hello_blank_fragment">Este es el nivel</string>
 </resources>
