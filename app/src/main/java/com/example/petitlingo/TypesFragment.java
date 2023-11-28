@@ -10,9 +10,11 @@ import android.widget.Button;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
+import com.example.petitlingo.couleurs.Couleur1;
+
 public class TypesFragment extends Fragment {
 
-    private String categorie;
+    protected String categorie;
 
     public TypesFragment() {
         // Required empty public constructor
@@ -31,29 +33,38 @@ public class TypesFragment extends Fragment {
                              Bundle savedInstanceState) {
         Log.d("TypesFragment", "onCreateView called");
         // Inflate the layout for this fragment
+        super.onCreate(savedInstanceState);
+        if (getArguments() != null) {
+            categorie = getArguments().getString("categorie");
+        }
         return inflater.inflate(R.layout.fragment_types, container, false);
     }
 
     @Override
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        Fragment fragment;
         switch (this.categorie) {
             case "Couleur":
-                Couleur1 categorieC = new Couleur1();
+                Couleur1 couleur1fragment = new Couleur1();
+                fragment = couleur1fragment.newInstance(); // Appelez ensuite newInstance() sur cette instance
                 break;
 //            case "Animal":
 //                Animal categorieC = new Animal();
 //            case "Vetement":
 //                Vetement categorieC = new Vetement();
+            default:
+                fragment = new Nvl1Fragment();
+                break;
         }
 
-        Button btnNvl1 = view.findViewById(R.id.btnNvl1);
+        Button btnNvl1 = view.findViewById(R.id.btnLvl1);
         btnNvl1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 // Muestra la vista de temas
                 getActivity().getSupportFragmentManager().beginTransaction()
-                        .replace(R.id.fragmentContainerView, new Nvl1Fragment())
+                        .replace(R.id.fragmentContainerView, fragment)
                         .addToBackStack(null)  // Opcional: agrega la transacción al back stack
                         .commit();
             }
