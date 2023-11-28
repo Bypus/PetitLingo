@@ -33,7 +33,7 @@
             android:orientation="horizontal">
 
             <Button
-                android:id="@+id/btnNvl1"
+                android:id="@+id/btnLvl1"
                 android:layout_width="wrap_content"
                 android:layout_height="80dp"
                 android:layout_margin="5dp"
@@ -43,7 +43,7 @@
                 app:cornerRadius="10dp" />
 
             <Button
-                android:id="@+id/btnVetements"
+                android:id="@+id/btnLvl2"
                 android:layout_width="wrap_content"
                 android:layout_height="80dp"
                 android:layout_margin="5dp"
@@ -59,7 +59,7 @@
             android:orientation="horizontal">
 
             <Button
-                android:id="@+id/btnAnimaux"
+                android:id="@+id/btnLvl3"
                 android:layout_width="match_parent"
                 android:layout_height="80dp"
                 android:layout_margin="5dp"
@@ -69,7 +69,7 @@
                 app:cornerRadius="10dp" />
 
             <Button
-                android:id="@+id/btnPartiesCorps"
+                android:id="@+id/btnLvl4"
                 android:layout_width="match_parent"
                 android:layout_height="80dp"
                 android:layout_margin="5dp"
