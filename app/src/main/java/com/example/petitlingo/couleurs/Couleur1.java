@@ -10,6 +10,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.example.petitlingo.R;
 import com.example.petitlingo.WelcomeFragment;
@@ -71,11 +72,17 @@ public class Couleur1 extends Fragment {
                              Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_couleur1, container, false);
 
-        // Initialisez vos ImageView
-//        color1View = rootView.findViewById(R.id.color1);
-//        color2View = rootView.findViewById(R.id.color2);
-//        color3View = rootView.findViewById(R.id.color3);
-//        color4View = rootView.findViewById(R.id.color4);
+        // Initialisez les TextView
+        TextView viesTextView = rootView.findViewById(R.id.colorLives);
+        TextView pointsTextView = rootView.findViewById(R.id.colorPoints);
+
+
+
+        // Initialisez les ImageView
+        color1View = rootView.findViewById(R.id.color1);
+        color2View = rootView.findViewById(R.id.color2);
+        color3View = rootView.findViewById(R.id.color3);
+        color4View = rootView.findViewById(R.id.color4);
 
         // Utiliser les méthodes pour obtenir le code de chaque couleur
         // Génération d'un nombre aléatoire entre 1 et 4 pour décider de la bonne couleur
