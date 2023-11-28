@@ -79,7 +79,7 @@
         android:orientation="horizontal">
 
         <!-- Premier rond de couleur -->
-        <View
+        <ImageView
             android:id="@+id/color1"
             android:layout_width="120dp"
             android:layout_height="120dp"
@@ -87,7 +87,7 @@
             android:background="@drawable/circle" />
 
         <!-- Deuxième rond de couleur -->
-        <View
+        <ImageView
             android:id="@+id/color2"
             android:layout_width="120dp"
             android:layout_height="120dp"
@@ -102,7 +102,7 @@
         android:gravity="center">
 
         <!-- Troisième rond de couleur -->
-        <View
+        <ImageView
             android:id="@+id/color3"
             android:layout_width="120dp"
             android:layout_height="120dp"
@@ -110,7 +110,7 @@
             android:background="@drawable/circle"/>
 
         <!-- Quatrième rond de couleur -->
-        <View
+        <ImageView
             android:id="@+id/color4"
             android:layout_width="120dp"
             android:layout_height="120dp"

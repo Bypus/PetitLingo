@@ -10,6 +10,7 @@ import android.widget.Button;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
+import com.example.petitlingo.animauxLvls.Lvl1AnimalFragment;
 import com.example.petitlingo.couleurs.Couleur1;
 
 public class TypesFragment extends Fragment {
@@ -49,22 +50,27 @@ public class TypesFragment extends Fragment {
                 Couleur1 couleur1fragment = new Couleur1();
                 fragment = couleur1fragment.newInstance(); // Appelez ensuite newInstance() sur cette instance
                 break;
-//            case "Animal":
-//                Animal categorieC = new Animal();
+            case "Animal":
+                Lvl1AnimalFragment animal1fragment = new Lvl1AnimalFragment();
+                fragment = animal1fragment;
+                break;
 //            case "Vetement":
-//                Vetement categorieC = new Vetement();
+//                Vetement vetement1fragment = new Vetement();
+//                fragment = vetement1fragment;
+//                break;
             default:
                 fragment = new Nvl1Fragment();
                 break;
         }
 
         Button btnNvl1 = view.findViewById(R.id.btnLvl1);
+        Fragment finalFragment = fragment;
         btnNvl1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 // Muestra la vista de temas
                 getActivity().getSupportFragmentManager().beginTransaction()
-                        .replace(R.id.fragmentContainerView, fragment)
+                        .replace(R.id.fragmentContainerView, finalFragment)
                         .addToBackStack(null)  // Opcional: agrega la transacción al back stack
                         .commit();
             }

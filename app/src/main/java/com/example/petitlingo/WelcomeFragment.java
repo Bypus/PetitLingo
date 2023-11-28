@@ -72,13 +72,13 @@ public class WelcomeFragment extends Fragment {
                 fragmentTransaction.commit();
             }
         });
-        binding.CatVetements.setEnabled(true);
-        binding.CatVetements.setOnClickListener(new View.OnClickListener() {
+        binding.CatAnimaux.setEnabled(true);
+        binding.CatAnimaux.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 FragmentManager fragmentManager = getParentFragmentManager();
                 FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-                TypesFragment typesFragment = new TypesFragment();
+                TypesFragment typesFragment = TypesFragment.newInstance("Animal");
 
                 fragmentTransaction.replace(R.id.fragmentContainerView, typesFragment);
                 // Ajouter à la pile de retour en arrière si nécessaire
@@ -86,8 +86,8 @@ public class WelcomeFragment extends Fragment {
                 fragmentTransaction.commit();
             }
         });
-        binding.CatAnimaux.setEnabled(true);
-        binding.CatAnimaux.setOnClickListener(new View.OnClickListener() {
+        binding.CatVetements.setEnabled(true);
+        binding.CatVetements.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 FragmentManager fragmentManager = getParentFragmentManager();

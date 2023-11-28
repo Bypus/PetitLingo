@@ -16,6 +16,7 @@ import com.example.petitlingo.R;
 import com.example.petitlingo.WelcomeFragment;
 import com.example.petitlingo.data.Couleurs;
 
+import java.util.HashMap;
 import java.util.Map;
 import java.util.Random;
 import java.util.Objects;
@@ -41,19 +42,6 @@ public class Couleur1 extends Fragment {
     public Couleur1 newInstance() {
         Couleur1 fragment = new Couleur1();
 
-        this.randomColor1 = ColorPicker.pickRandomColor(colorsMap);
-        this.randomColor2 = ColorPicker.pickRandomColor(colorsMap);
-        while (Objects.equals(this.randomColor1, this.randomColor2)){
-            this.randomColor2 = ColorPicker.pickRandomColor(colorsMap);
-        }
-        this.randomColor3 = ColorPicker.pickRandomColor(colorsMap);
-        while (Objects.equals(this.randomColor3, this.randomColor1) || Objects.equals(this.randomColor3, this.randomColor2)){
-            this.randomColor3 = ColorPicker.pickRandomColor(colorsMap);
-        }
-        this.trueColor = ColorPicker.pickRandomColor(colorsMap);
-        while (Objects.equals(this.trueColor, this.randomColor1) || Objects.equals(this.trueColor, this.randomColor2) || Objects.equals(this.trueColor, this.randomColor3)){
-            this.trueColor = ColorPicker.pickRandomColor(colorsMap);
-        }
 
         return fragment;
     }
@@ -67,15 +55,31 @@ public class Couleur1 extends Fragment {
         return Couleurs.getData(colorsMap, whichColor, "text");
     }
 
+    public void instanciateView() {
+        colorsMap = new HashMap<>();
+        this.randomColor1 = ColorPicker.pickRandomColor(colorsMap);
+        this.randomColor2 = ColorPicker.pickRandomColor(colorsMap);
+        while (Objects.equals(this.randomColor1, this.randomColor2)){
+            this.randomColor2 = ColorPicker.pickRandomColor(colorsMap);
+        }
+        this.randomColor3 = ColorPicker.pickRandomColor(colorsMap);
+        while (Objects.equals(this.randomColor3, this.randomColor1) || Objects.equals(this.randomColor3, this.randomColor2)){
+            this.randomColor3 = ColorPicker.pickRandomColor(colorsMap);
+        }
+        this.trueColor = ColorPicker.pickRandomColor(colorsMap);
+        while (Objects.equals(this.trueColor, this.randomColor1) || Objects.equals(this.trueColor, this.randomColor2) || Objects.equals(this.trueColor, this.randomColor3)){
+            this.trueColor = ColorPicker.pickRandomColor(colorsMap);
+        }
+    }
 
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+        instanciateView();
         View rootView = inflater.inflate(R.layout.fragment_couleur1, container, false);
 
         // Initialisez les TextView
         TextView viesTextView = rootView.findViewById(R.id.colorLives);
         TextView pointsTextView = rootView.findViewById(R.id.colorPoints);
-
 
 
         // Initialisez les ImageView
