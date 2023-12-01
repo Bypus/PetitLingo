@@ -1,11 +1,15 @@
 package com.example.petitlingo.couleurs;
 
 import android.annotation.SuppressLint;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import android.graphics.Color;
 import android.os.Bundle;
 
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -74,9 +78,18 @@ public class Couleur1 extends Fragment {
 
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        instanciateView();
-        View rootView = inflater.inflate(R.layout.fragment_couleur1, container, false);
+        return inflater.inflate(R.layout.fragment_couleur1, container, false);
+    }
 
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        instanciateView();
+        generateGame(this.getView());
+
+    }
+
+    private void generateGame(View rootView) {
         // Initialisez les TextView
         TextView viesTextView = rootView.findViewById(R.id.colorLives);
         TextView pointsTextView = rootView.findViewById(R.id.colorPoints);
@@ -124,8 +137,6 @@ public class Couleur1 extends Fragment {
             ImageView colorView = rootView.findViewById(colorViewId);
             colorView.setBackgroundColor(Color.parseColor(colorCodes[orderIndex]));
         }
-
-        return rootView;
     }
 
 }
