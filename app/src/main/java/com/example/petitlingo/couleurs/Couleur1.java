@@ -35,19 +35,23 @@ public class Couleur1 extends Fragment {
     private ImageView color2View;
     private ImageView color3View;
     private ImageView color4View;
-    private static Map<String, Map<String, String>> colorsMap;
+    private static Couleurs couleurs;
 
     private String randomColor1;
     private String randomColor2;
     private String randomColor3;
     private String trueColor;
 
+    private Integer Case;
+
+    private static Map<String, Map<String, String>> colorsMap;
+
 
     public Couleur1 newInstance() {
-        Couleur1 fragment = new Couleur1();
-
-
-        return fragment;
+        Couleur1 couleur1 = new Couleur1();
+        couleurs = new Couleurs();
+        colorsMap = couleurs.tabColors();
+        return couleur1;
     }
     public Couleur1() {
     }
@@ -60,8 +64,10 @@ public class Couleur1 extends Fragment {
     }
 
     public void instanciateView() {
-        colorsMap = new HashMap<>();
+        colorsMap = couleurs.tabColors();
+        Log.d("ColorPicker", "Colors Map: " + colorsMap.toString());
         this.randomColor1 = ColorPicker.pickRandomColor(colorsMap);
+        Log.d("ColorPicker", "Random Color 1: " + randomColor1);
         this.randomColor2 = ColorPicker.pickRandomColor(colorsMap);
         while (Objects.equals(this.randomColor1, this.randomColor2)){
             this.randomColor2 = ColorPicker.pickRandomColor(colorsMap);
@@ -78,8 +84,10 @@ public class Couleur1 extends Fragment {
 
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.fragment_couleur1, container, false);
-    }
+        View rootView = inflater.inflate(R.layout.fragment_couleur1, container, false);
+        instanciateView();
+        generateGame(rootView);
+        return rootView;    }
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
@@ -108,10 +116,10 @@ public class Couleur1 extends Fragment {
 
         // Créer un tableau pour stocker les couleurs dans l'ordre
         String[] colorCodes = new String[4];
-        colorCodes[0] = getColorCode(this.randomColor1);
-        colorCodes[1] = getColorCode(this.randomColor2);
-        colorCodes[2] = getColorCode(this.randomColor3);
-        colorCodes[3] = getColorCode(this.trueColor);
+        colorCodes[0] = this.randomColor1;
+        colorCodes[1] = this.randomColor2;
+        colorCodes[2] = this.randomColor3;
+        colorCodes[3] = this.trueColor;
 
         // Utiliser la logique pour décider de l'ordre des couleurs
         int[] order;
@@ -133,10 +141,12 @@ public class Couleur1 extends Fragment {
         // Convertir les codes et appliquer les couleurs aux ImageView
         for (int i = 0; i < colorCodes.length; i++) {
             int orderIndex = order[i];
-            int colorViewId = getResources().getIdentifier("color" + (i + 1) + "View", "id", getActivity().getPackageName());
+            int colorViewId = getResources().getIdentifier("color" + (i + 1), "id", getActivity().getPackageName());
             ImageView colorView = rootView.findViewById(colorViewId);
+            Log.d("log : " ,colorCodes[orderIndex]);
             colorView.setBackgroundColor(Color.parseColor(colorCodes[orderIndex]));
         }
     }
+
 
 }

@@ -4,8 +4,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class Couleurs {
-    public static void main(String[] args) {
-        // Créer le tableau associatif en Java
+    public Map<String, Map<String, String>> tabColors(){
         Map<String, Map<String, String>> colorsMap = new HashMap<>();
 
         // Ajouter les données au tableau
@@ -21,6 +20,8 @@ public class Couleurs {
         // Afficher les données
         System.out.println("Color for rouge: " + redColor);
         System.out.println("Text for bleu: " + blueText);
+
+        return colorsMap;
     }
 
     // Méthode pour ajouter des données au tableau associatif
