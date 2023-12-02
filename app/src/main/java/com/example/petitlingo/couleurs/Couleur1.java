@@ -5,9 +5,10 @@ import android.annotation.SuppressLint;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+
 import android.graphics.Color;
 import android.os.Bundle;
-
 
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -17,10 +18,9 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.petitlingo.R;
-import com.example.petitlingo.WelcomeFragment;
 import com.example.petitlingo.data.Couleurs;
+import com.example.petitlingo.winorlose.WinOrLoseFragment;
 
-import java.util.HashMap;
 import java.util.Map;
 import java.util.Random;
 import java.util.Objects;
@@ -49,8 +49,7 @@ public class Couleur1 extends Fragment {
 
     public Couleur1 newInstance() {
         Couleur1 couleur1 = new Couleur1();
-        couleurs = new Couleurs();
-        colorsMap = couleurs.tabColors();
+
         return couleur1;
     }
     public Couleur1() {
@@ -64,7 +63,9 @@ public class Couleur1 extends Fragment {
     }
 
     public void instanciateView() {
+        couleurs = new Couleurs();
         colorsMap = couleurs.tabColors();
+
         Log.d("ColorPicker", "Colors Map: " + colorsMap.toString());
         this.randomColor1 = ColorPicker.pickRandomColor(colorsMap);
         Log.d("ColorPicker", "Random Color 1: " + randomColor1);
@@ -94,6 +95,46 @@ public class Couleur1 extends Fragment {
         super.onViewCreated(view, savedInstanceState);
         instanciateView();
         generateGame(this.getView());
+
+        WinOrLoseFragment winOrLoseFragment = new WinOrLoseFragment();
+        // Créez un Bundle pour transmettre des données au fragment
+        Bundle args = new Bundle();
+        FragmentManager fragmentManager = requireActivity().getSupportFragmentManager();
+
+        ImageView btnClr1 = view.findViewById(R.id.color1);
+        btnClr1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                args.putInt(WinOrLoseFragment.RESULT_KEY, WinOrLoseFragment.RESULT_VICTORY); // Remplacez RESULT_VICTORY par RESULT_DEFEAT pour indiquer la défaite
+
+                // Ajoutez les données au fragment
+                winOrLoseFragment.setArguments(args);
+
+                // Commencez une transaction pour remplacer le fragment actuel par WinOrLoseFragment
+                fragmentManager.beginTransaction()
+                        .replace(R.id.fragmentContainerView, winOrLoseFragment) // Remplace le fragment_container par WinOrLoseFragment
+                        .addToBackStack(null) // Ajoute la transaction à la pile de retour arrière
+                        .commit();
+            }
+        });
+
+        ImageView btnClr2 = view.findViewById(R.id.color2);
+        btnClr2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                args.putInt(WinOrLoseFragment.RESULT_KEY, WinOrLoseFragment.RESULT_DEFEAT); // Remplacez RESULT_VICTORY par RESULT_DEFEAT pour indiquer la défaite
+
+                // Ajoutez les données au fragment
+                winOrLoseFragment.setArguments(args);
+
+                // Commencez une transaction pour remplacer le fragment actuel par WinOrLoseFragment
+                fragmentManager.beginTransaction()
+                        .replace(R.id.fragmentContainerView, winOrLoseFragment) // Remplace le fragment_container par WinOrLoseFragment
+                        .addToBackStack(null) // Ajoute la transaction à la pile de retour arrière
+                        .commit();
+            }
+        });
 
     }
 

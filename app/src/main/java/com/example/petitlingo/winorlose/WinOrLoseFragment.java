@@ -1,0 +1,76 @@
+package com.example.petitlingo.winorlose;
+
+import android.os.Bundle;
+
+import androidx.fragment.app.Fragment;
+
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.ImageView;
+import android.widget.TextView;
+
+import com.example.petitlingo.R;
+import com.example.petitlingo.WelcomeFragment;
+
+/**
+ * A simple {@link Fragment} subclass.
+ * Use the {@link WinOrLoseFragment} factory method to
+ * create an instance of this fragment.
+ */
+public class WinOrLoseFragment extends Fragment {
+
+    public static final String RESULT_KEY = "result";
+    public static final int RESULT_VICTORY = 1;
+    public static final int RESULT_DEFEAT = 0;
+
+    public WinOrLoseFragment() {
+        // Required empty public constructor
+    }
+
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
+        View rootView = inflater.inflate(R.layout.fragment_win_or_lose, container, false);
+
+        TextView resultTextView = rootView.findViewById(R.id.resultTextView);
+
+        // Récupérer les données transmises au fragment
+        Bundle args = getArguments();
+        if (args != null) {
+            int result = args.getInt(RESULT_KEY);
+
+            // Mettre à jour le texte en fonction du résultat
+            if (result == RESULT_VICTORY) {
+                resultTextView.setText("Bravo !");
+            } else if (result == RESULT_DEFEAT) {
+                resultTextView.setText("Mince, ce n'est pas ça... Réessaye !");
+            }
+        }
+
+        Button menuButton = rootView.findViewById(R.id.menuButton);
+        menuButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Retourner au fragment WelcomeFragment
+                WelcomeFragment welcomeFragment = new WelcomeFragment();
+                requireActivity().getSupportFragmentManager().beginTransaction()
+                        .replace(R.id.fragmentContainerView, welcomeFragment)
+                        .commit();
+            }
+        });
+
+        Button retryButton = rootView.findViewById(R.id.retryButton);
+        retryButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Retourner au fragment précédent
+                requireActivity().getSupportFragmentManager().popBackStack();
+
+            }
+        });
+
+        return rootView;
+    }
+}
