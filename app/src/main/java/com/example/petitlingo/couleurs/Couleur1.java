@@ -129,6 +129,7 @@ public class Couleur1 extends Fragment {
             livesTextView.setText(livesText.toString());
             if (livesText == 0){
                 args.putInt(WinOrLoseFragment.RESULT_KEY, WinOrLoseFragment.RESULT_DEFEAT);
+                args.putInt(WinOrLoseFragment.POINTS_KEY, Integer.valueOf(pointsText));
                 WinOrLoseFragment winOrLoseFragment = new WinOrLoseFragment();
                 winOrLoseFragment.setArguments(args);
 
@@ -137,6 +138,17 @@ public class Couleur1 extends Fragment {
                         .addToBackStack(null)
                         .commit();
             }
+        }
+
+        if (pointsText == 5){
+            args.putInt(WinOrLoseFragment.RESULT_KEY, WinOrLoseFragment.RESULT_VICTORY);
+            WinOrLoseFragment winOrLoseFragment = new WinOrLoseFragment();
+            winOrLoseFragment.setArguments(args);
+
+            requireActivity().getSupportFragmentManager().beginTransaction()
+                    .replace(R.id.fragmentContainerView, winOrLoseFragment)
+                    .addToBackStack(null)
+                    .commit();
         }
     }
 
@@ -197,7 +209,7 @@ public class Couleur1 extends Fragment {
             int orderIndex = order[i];
             int colorViewId = getResources().getIdentifier("color" + (i + 1), "id", getActivity().getPackageName());
             ImageView colorView = rootView.findViewById(colorViewId);
-            Log.d("log : " ,colorCodes[orderIndex]);
+            Log.d("log : ", colorCodes[orderIndex]);
             colorView.setBackgroundColor(Color.parseColor(colorCodes[orderIndex]));
         }
 
