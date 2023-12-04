@@ -1,40 +1,199 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#F1F1F1"
     android:foregroundTint="#FFFFFF"
-    android:gravity="center_horizontal"
+    android:gravity="center_horizontal|center_vertical"
     android:orientation="vertical"
     tools:context=".animauxLvls.Lvl1AnimalFragment">
 
-    <ImageView
-        android:id="@+id/imageAnimal"
-        android:layout_width="200dp"
-        android:layout_height="200dp"
-        android:layout_gravity="center"
-        android:clickable="true"
-        android:contentDescription="baby_elephant"
-        android:src="@drawable/baby_elephant" />
 
-    <FrameLayout
-        android:id="@+id/dropArea"
+    <TextView
+        android:id="@+id/textView"
         android:layout_width="match_parent"
-        android:layout_height="200dp"
-        android:layout_margin="50dp"
-        android:layout_marginTop="16dp"
-        android:background="@android:color/holo_blue_bright">
+        android:layout_height="wrap_content"
+        android:layout_margin="20dp"
+        android:fontFamily="casual"
+        android:gravity="center"
+        android:text="Choisir le bonne "
+        android:textSize="24sp" />
 
-        <TextView
-            android:id="@+id/nameAnimal"
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:id="@+id/imageAnimalElephant"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:layout_gravity="center"
+            android:clickable="true"
+            android:contentDescription="baby elephant"
+            android:src="@drawable/baby_elephant" />
+
+        <ImageView
+            android:id="@+id/imageAnimalLion"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:layout_weight="1"
+            android:clickable="true"
+            android:contentDescription="baby lion"
+            android:src="@drawable/baby_lion" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:id="@+id/imageAnimalCow"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:layout_gravity="center"
+            android:layout_weight="1"
+            android:clickable="true"
+            android:contentDescription="baby cow"
+            android:src="@drawable/baby_cow"
+
+            />
+
+        <ImageView
+            android:id="@+id/imageAnimalGiraffe"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:layout_gravity="center"
+            android:layout_weight="1"
+            android:clickable="true"
+            android:contentDescription="baby giraffe"
+            android:src="@drawable/baby_giraffe" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:orientation="vertical"
+        tools:ignore="ExtraText">
+
+        <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:clickable="false"
-            android:paddingTop="16dp"
-            android:text="Suelta aqui"
-            android:textSize="18sp"
-            android:textStyle="bold" />
-    </FrameLayout>
+            android:orientation="horizontal">
+
+            <FrameLayout
+                android:id="@+id/dropAreaGiraffe"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:background="#FFEB3B"
+                app:layout_constraintTop_toBottomOf="@+id/dropAreaCow">
+
+                <TextView
+                    android:id="@+id/nameAnimalGiraffe"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_margin="10dp"
+                    android:clickable="false"
+                    android:gravity="center"
+                    android:text="Giraffe"
+                    android:textSize="34sp"
+                    android:textStyle="bold" />
+            </FrameLayout>
+
+            <FrameLayout
+                android:id="@+id/dropAreaElephant"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:background="#6BC8F3"
+                app:layout_constraintTop_toBottomOf="@+id/dropAreaGiraffe">
+
+                <TextView
+                    android:id="@+id/nameAnimalElephant"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_margin="10dp"
+                    android:clickable="false"
+                    android:gravity="center"
+                    android:text="Elephant"
+                    android:textColorHint="@color/black"
+                    android:textSize="34sp"
+                    android:textStyle="bold" />
+
+            </FrameLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <FrameLayout
+                android:id="@+id/dropAreaCow"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:background="#CDDC39"
+                android:fadeScrollbars="false"
+                android:focusableInTouchMode="true"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <TextView
+                    android:id="@+id/nameAnimalCow"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_margin="10dp"
+                    android:clickable="false"
+                    android:gravity="center"
+                    android:text="Cow!"
+                    android:textSize="34sp"
+                    android:textStyle="bold" />
+            </FrameLayout>
+
+            <FrameLayout
+                android:id="@+id/dropAreaLion"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:background="#FF9800"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/dropAreaElephant">
+
+                <TextView
+                    android:id="@+id/nameAnimalLion"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_margin="10dp"
+                    android:clickable="false"
+                    android:gravity="center"
+                    android:text="Lion!"
+                    android:textSize="34sp"
+                    android:textStyle="bold" />
+            </FrameLayout>
+
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/btnNext"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="20dp"
+            android:layout_weight="0"
+            android:text="Next"
+            android:enabled="false"
+            app:cornerRadius="10dp" />
+
+    </LinearLayout>
+
 </LinearLayout>
