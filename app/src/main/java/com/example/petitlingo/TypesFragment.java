@@ -46,7 +46,7 @@ public class TypesFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        Fragment fragment;
+        Fragment fragment = new Fragment();
 
         // Identificadores de los botones
         int[] buttonIds = {R.id.btnLvl1, R.id.btnLvl2, R.id.btnLvl3 /* Agrega más botones según sea necesario */};
@@ -58,10 +58,11 @@ public class TypesFragment extends Fragment {
             button.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
+                    Fragment fragment;
+
                     // Muestra la vista del nivel seleccionado
                     switch (categorie) {
                         case "Animal":
-                            Fragment fragment;
                             switch (nivel) {
                                 case 1:
                                     fragment = new Lvl2AnimalFragment();
@@ -95,33 +96,16 @@ public class TypesFragment extends Fragment {
                             fragment = new Nvl1Fragment();
                             break;
 
+
                     }
+                    Fragment finalFragment = fragment;
+                    getActivity().getSupportFragmentManager().beginTransaction()
+                            .replace(R.id.fragmentContainerView, finalFragment)
+                            .addToBackStack(null)  // Opcional: agrega la transacción al back stack
+                            .commit();
+
                 }
             });
         }
-        Button btnNvl1 = view.findViewById(R.id.btnLvl1);
-        Fragment finalFragment = fragment;
-        btnNvl1.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                // Muestra la vista de temas
-                getActivity().getSupportFragmentManager().beginTransaction()
-                        .replace(R.id.fragmentContainerView, finalFragment)
-                        .addToBackStack(null)  // Opcional: agrega la transacción al back stack
-                        .commit();
-            }
-        });
-
-        Button btnNvl2 = view.findViewById(R.id.btnLvl2);
-        btnNvl2.setEnabled(false); // Rend le bouton non cliquable
-        btnNvl2.setAlpha(0.5f); // Change l'opacité pour griser visuellement le bouton
-
-        Button btnNvl3 = view.findViewById(R.id.btnLvl3);
-        btnNvl3.setEnabled(false);
-        btnNvl3.setAlpha(0.5f);
-
-        Button btnNvl4 = view.findViewById(R.id.btnLvl4);
-        btnNvl4.setEnabled(false);
-        btnNvl4.setAlpha(0.5f);
     }
 }
