@@ -44,6 +44,8 @@ public class Couleurs {
         }
         return "Not found";
     }
+
+    //Méthode pour obtenir le nom de la couleur à partir de son code
     public static String getTextForColorCode(Map<String, Map<String, String>> colorsMap, String colorCode) {
         for (Map.Entry<String, Map<String, String>> entry : colorsMap.entrySet()) {
             Map<String, String> colorData = entry.getValue();
