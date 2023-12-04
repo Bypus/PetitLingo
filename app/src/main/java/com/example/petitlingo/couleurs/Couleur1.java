@@ -8,6 +8,7 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 
 import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 
 import android.util.Log;
@@ -92,7 +93,39 @@ public class Couleur1 extends Fragment {
         View rootView = inflater.inflate(R.layout.fragment_couleur1, container, false);
         instanciateView();
         generateGame(rootView);
-        return rootView;    }
+        return rootView;
+    }
+
+    private int getTrueColorButtonId(View rootView) {
+
+        int[] buttonIds = {R.id.color1, R.id.color2, R.id.color3, R.id.color4}; // Liste des IDs de boutons
+
+        for (int buttonId : buttonIds) {
+            View button = rootView.findViewById(buttonId); // Récupérer la vue du bouton
+            if (button != null && button.getBackground() instanceof ColorDrawable) {
+                int buttonColor = ((ColorDrawable) button.getBackground()).getColor();
+                String buttonHexColor = String.format("#%06X", (0xFFFFFF & buttonColor)); // Conversion en hexadécimal
+                if (this.trueColor.equalsIgnoreCase(buttonHexColor)) {
+                    return buttonId; // Retourne l'ID du bouton correspondant à la couleur correcte
+                }
+            }
+        }
+        return -1; // Si aucun bouton correspondant n'est trouvé
+    }
+
+    // Mettre à jour les données et remplacer le fragment actuel par WinOrLoseFragment
+    private void handleImageClick(boolean isVictory) {
+        Bundle args = new Bundle();
+        args.putInt(WinOrLoseFragment.RESULT_KEY, isVictory ? WinOrLoseFragment.RESULT_VICTORY : WinOrLoseFragment.RESULT_DEFEAT);
+
+        WinOrLoseFragment winOrLoseFragment = new WinOrLoseFragment();
+        winOrLoseFragment.setArguments(args);
+
+        requireActivity().getSupportFragmentManager().beginTransaction()
+                .replace(R.id.fragmentContainerView, winOrLoseFragment)
+                .addToBackStack(null)
+                .commit();
+    }
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
@@ -100,45 +133,54 @@ public class Couleur1 extends Fragment {
         instanciateView();
         generateGame(this.getView());
 
-        WinOrLoseFragment winOrLoseFragment = new WinOrLoseFragment();
-        // Créez un Bundle pour transmettre des données au fragment
-        Bundle args = new Bundle();
-        FragmentManager fragmentManager = requireActivity().getSupportFragmentManager();
-
+        Integer trueButtonId = getTrueColorButtonId(view);
+        // Dans onViewCreated ou là où tu initialises tes ImageView
         ImageView btnClr1 = view.findViewById(R.id.color1);
-        btnClr1.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                args.putInt(WinOrLoseFragment.RESULT_KEY, WinOrLoseFragment.RESULT_VICTORY); // Remplacez RESULT_VICTORY par RESULT_DEFEAT pour indiquer la défaite
-
-                // Ajoutez les données au fragment
-                winOrLoseFragment.setArguments(args);
-
-                // Commencez une transaction pour remplacer le fragment actuel par WinOrLoseFragment
-                fragmentManager.beginTransaction()
-                        .replace(R.id.fragmentContainerView, winOrLoseFragment) // Remplace le fragment_container par WinOrLoseFragment
-                        .addToBackStack(null) // Ajoute la transaction à la pile de retour arrière
-                        .commit();
-            }
-        });
+        btnClr1.setOnClickListener(v -> handleImageClick(btnClr1.getId() == trueButtonId));
 
         ImageView btnClr2 = view.findViewById(R.id.color2);
-        btnClr2.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
+        btnClr2.setOnClickListener(v -> handleImageClick(btnClr2.getId() == trueButtonId));
 
-                args.putInt(WinOrLoseFragment.RESULT_KEY, WinOrLoseFragment.RESULT_DEFEAT); // Remplacez RESULT_VICTORY par RESULT_DEFEAT pour indiquer la défaite
+        ImageView btnClr3 = view.findViewById(R.id.color3);
+        btnClr3.setOnClickListener(v -> handleImageClick(btnClr3.getId() == trueButtonId));
 
-                // Ajoutez les données au fragment
-                winOrLoseFragment.setArguments(args);
+        ImageView btnClr4 = view.findViewById(R.id.color4);
+        btnClr4.setOnClickListener(v -> handleImageClick(btnClr4.getId() == trueButtonId));
 
-                // Commencez une transaction pour remplacer le fragment actuel par WinOrLoseFragment
-                fragmentManager.beginTransaction()
-                        .replace(R.id.fragmentContainerView, winOrLoseFragment) // Remplace le fragment_container par WinOrLoseFragment
-                        .addToBackStack(null) // Ajoute la transaction à la pile de retour arrière
-                        .commit();
-            }
-        });
+//        ImageView btnClr1 = view.findViewById(R.id.color1);
+//        btnClr1.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                args.putInt(WinOrLoseFragment.RESULT_KEY, WinOrLoseFragment.RESULT_VICTORY); // Remplacez RESULT_VICTORY par RESULT_DEFEAT pour indiquer la défaite
+//
+//                // Ajoutez les données au fragment
+//                winOrLoseFragment.setArguments(args);
+//
+//                // Commencez une transaction pour remplacer le fragment actuel par WinOrLoseFragment
+//                fragmentManager.beginTransaction()
+//                        .replace(R.id.fragmentContainerView, winOrLoseFragment) // Remplace le fragment_container par WinOrLoseFragment
+//                        .addToBackStack(null) // Ajoute la transaction à la pile de retour arrière
+//                        .commit();
+//            }
+//        });
+//
+//        ImageView btnClr2 = view.findViewById(R.id.color2);
+//        btnClr2.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//
+//                args.putInt(WinOrLoseFragment.RESULT_KEY, WinOrLoseFragment.RESULT_DEFEAT); // Remplacez RESULT_VICTORY par RESULT_DEFEAT pour indiquer la défaite
+//
+//                // Ajoutez les données au fragment
+//                winOrLoseFragment.setArguments(args);
+//
+//                // Commencez une transaction pour remplacer le fragment actuel par WinOrLoseFragment
+//                fragmentManager.beginTransaction()
+//                        .replace(R.id.fragmentContainerView, winOrLoseFragment) // Remplace le fragment_container par WinOrLoseFragment
+//                        .addToBackStack(null) // Ajoute la transaction à la pile de retour arrière
+//                        .commit();
+//            }
+//        });
 
     }
 
@@ -157,7 +199,7 @@ public class Couleur1 extends Fragment {
 
         // Afficher la couleur à deviner
 
-        trueColorTextView.setText(trueColorText);
+        trueColorTextView.setText("Trouve la couleur " + trueColorText + " !");
 
         // Utiliser les méthodes pour obtenir le code de chaque couleur
         // Génération d'un nombre aléatoire entre 1 et 4 pour décider de la bonne couleur
