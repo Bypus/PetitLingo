@@ -8,6 +8,8 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import androidx.fragment.app.Fragment;
 import com.example.petitlingo.R;
+import com.example.petitlingo.TypesFragment;
+import com.example.petitlingo.WelcomeFragment;
 
 public class Lvl3AnimalFragment extends Fragment {
 
@@ -47,7 +49,18 @@ public class Lvl3AnimalFragment extends Fragment {
 
         // Deshabilitar el botón "Next" inicialmente
         btnNextLvl3.setEnabled(false);
-
+        // Agregar un listener al botón "Next"
+        btnNextLvl3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                // Reemplazar el fragmento actual con el fragmento de inicio
+                WelcomeFragment welcomeFragment = new WelcomeFragment();
+                requireActivity().getSupportFragmentManager().beginTransaction()
+                        .replace(R.id.fragmentContainerView, welcomeFragment)
+                        .addToBackStack(null)
+                        .commit();
+            }
+        });
         return view;
     }
 
@@ -57,21 +70,23 @@ public class Lvl3AnimalFragment extends Fragment {
         boolean isCowCorrect = etxtCow.getText().toString().equalsIgnoreCase("cow");
         boolean isGiraffeCorrect = etxtGiraffe.getText().toString().equalsIgnoreCase("giraffe");
 
-        // Mostrar imágenes de animales según si la respuesta es correcta o incorrecta
-        setImageStatus(imageElephant, isElephantCorrect);
-        setImageStatus(imageLion, isLionCorrect);
-        setImageStatus(imageCow, isCowCorrect);
-        setImageStatus(imageGiraffe, isGiraffeCorrect);
+        // Cambiar el color del texto según si la respuesta es correcta o incorrecta
+        setTextColor(etxtElephant, isElephantCorrect);
+        setTextColor(etxtLion, isLionCorrect);
+        setTextColor(etxtCow, isCowCorrect);
+        setTextColor(etxtGiraffe, isGiraffeCorrect);
 
         // Habilitar el botón "Next" si todas las respuestas son correctas
         btnNextLvl3.setEnabled(isElephantCorrect && isLionCorrect && isCowCorrect && isGiraffeCorrect);
     }
 
-    private void setImageStatus(ImageView imageView, boolean isCorrect) {
+    private void setTextColor(EditText editText, boolean isCorrect) {
         if (isCorrect) {
-            imageView.setImageResource(R.drawable.ic_check); // Cambiar a tu imagen correcta
+            editText.setTextColor(getResources().getColor(R.color.correctColor)); // Cambia a tu color correcto
         } else {
-            imageView.setImageResource(R.drawable.ic_cross); // Cambiar a tu imagen incorrecta
+            editText.setTextColor(getResources().getColor(R.color.incorrectColor)); // Cambia a tu color incorrecto
         }
     }
+
+
 }

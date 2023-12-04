@@ -60,7 +60,20 @@ public class Lvl1AnimalFragment extends Fragment {
     private void enableNextButton() {
         Button btnNext = getView().findViewById(R.id.btnNext);
         btnNext.setEnabled(true);
+
+        btnNext.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                // Reemplazar el fragmento actual con el nuevo fragmento (por ejemplo, Lvl2AnimalFragment)
+                Lvl3AnimalFragment lvl3Fragment = new Lvl3AnimalFragment();
+                requireActivity().getSupportFragmentManager().beginTransaction()
+                        .replace(R.id.fragmentContainerView, lvl3Fragment)
+                        .addToBackStack(null)
+                        .commit();
+            }
+        });
     }
+
 
 
 
@@ -90,19 +103,19 @@ public class Lvl1AnimalFragment extends Fragment {
 
                     if (dropAreaId == R.id.dropAreaElephant && draggedImage.getId() == R.id.imageAnimalElephant) {
                         elephantInPlace = true;
-                        showToast("¡Has colocado el elefante correctamente!");
+                        showToast("Tu as placé l'éléphant correctement !");
 
                     } else if (dropAreaId == R.id.dropAreaLion && draggedImage.getId() == R.id.imageAnimalLion) {
                         lionInPlace = true;
-                        showToast("¡Has colocado el Leon correctamente!");
+                        showToast("Tu as placé le lion correctement !");
                     } else if (dropAreaId == R.id.dropAreaCow && draggedImage.getId() == R.id.imageAnimalCow) {
                         cowInPlace = true;
-                        showToast("¡Has colocado la vaca correctamente!");
+                        showToast("Tu as placé le cow correctement !");
                     } else if (dropAreaId == R.id.dropAreaGiraffe && draggedImage.getId() == R.id.imageAnimalGiraffe) {
                         giraffeInPlace = true;
-                        showToast("¡Has colocado la girafa  correctamente!");
+                        showToast("Tu as placé le giraffe correctement !");
                     } else {
-                        showToast("¡Has colocado el animal en el área incorrecta!");
+                        showToast("Tu n'as pas placé le animal correctement !");
                     }
 
                     checkAllAnimalsInPlace();

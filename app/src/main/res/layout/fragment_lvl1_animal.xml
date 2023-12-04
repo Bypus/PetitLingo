@@ -4,7 +4,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#F1F1F1"
     android:foregroundTint="#FFFFFF"
     android:gravity="center_horizontal|center_vertical"
     android:orientation="vertical"
@@ -15,15 +14,43 @@
         android:id="@+id/textView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="20dp"
+        android:layout_margin="30dp"
         android:fontFamily="casual"
         android:gravity="center"
-        android:text="Choisir le bonne "
-        android:textSize="24sp" />
+        android:text="Faire glisser l'image"
+        android:textSize="34sp" />
 
     <LinearLayout
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:id="@+id/imageAnimalCow"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:layout_gravity="center"
+            android:clickable="true"
+            android:contentDescription="baby cow"
+            android:src="@drawable/baby_cow"
+
+            />
+
+        <ImageView
+            android:id="@+id/imageAnimalGiraffe"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:layout_gravity="center"
+            android:clickable="true"
+            android:contentDescription="baby giraffe"
+            android:src="@drawable/baby_giraffe" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
         android:orientation="horizontal">
 
         <ImageView
@@ -39,39 +66,10 @@
             android:id="@+id/imageAnimalLion"
             android:layout_width="150dp"
             android:layout_height="150dp"
-            android:layout_weight="1"
             android:clickable="true"
             android:contentDescription="baby lion"
             android:src="@drawable/baby_lion" />
 
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
-
-        <ImageView
-            android:id="@+id/imageAnimalCow"
-            android:layout_width="150dp"
-            android:layout_height="150dp"
-            android:layout_gravity="center"
-            android:layout_weight="1"
-            android:clickable="true"
-            android:contentDescription="baby cow"
-            android:src="@drawable/baby_cow"
-
-            />
-
-        <ImageView
-            android:id="@+id/imageAnimalGiraffe"
-            android:layout_width="150dp"
-            android:layout_height="150dp"
-            android:layout_gravity="center"
-            android:layout_weight="1"
-            android:clickable="true"
-            android:contentDescription="baby giraffe"
-            android:src="@drawable/baby_giraffe" />
     </LinearLayout>
 
     <LinearLayout
@@ -82,13 +80,14 @@
         tools:ignore="ExtraText">
 
         <LinearLayout
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
             android:orientation="horizontal">
 
             <FrameLayout
                 android:id="@+id/dropAreaGiraffe"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
                 android:background="#FFEB3B"
@@ -109,8 +108,8 @@
 
             <FrameLayout
                 android:id="@+id/dropAreaElephant"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
                 android:layout_margin="10dp"
                 android:background="#6BC8F3"
                 app:layout_constraintTop_toBottomOf="@+id/dropAreaGiraffe">
@@ -190,8 +189,8 @@
             android:layout_height="wrap_content"
             android:layout_margin="20dp"
             android:layout_weight="0"
-            android:text="Next"
             android:enabled="false"
+            android:text="Suivant"
             app:cornerRadius="10dp" />
 
     </LinearLayout>

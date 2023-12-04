@@ -79,7 +79,12 @@ public class Lvl2AnimalFragment extends Fragment implements View.OnClickListener
             playSound(mediaPlayerElephant);
             checkButtonsPressed();
         } else if (view.getId() == R.id.btnNextLvl2) {
-            // Lógica para el botón Next
+            // Reemplazar el fragmento actual con el nuevo fragmento
+            Lvl1AnimalFragment lvl1Fragment = new Lvl1AnimalFragment();
+            requireActivity().getSupportFragmentManager().beginTransaction()
+                    .replace(R.id.fragmentContainerView, lvl1Fragment)
+                    .addToBackStack(null)  // Esto agrega el fragmento al back stack, por si quieres realizar un retroceso
+                    .commit();
         }
     }
 

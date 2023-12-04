@@ -3,7 +3,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+    android:layout_height="match_parent"
+    android:gravity="center_horizontal"
     android:orientation="vertical"
     tools:context=".animauxLvls.Lvl3AnimalFragment">
 
@@ -13,20 +14,21 @@
         android:id="@+id/textView4"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_margin="30dp"
         android:fontFamily="casual"
         android:gravity="center_horizontal"
-        android:text="TextView"
-        android:textSize="48sp" />
+        android:text="Écrire le nom des animaux"
+        android:textSize="34sp" />
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:gravity="center_horizontal"
         android:orientation="horizontal">
 
         <LinearLayout
             android:layout_width="wrap_content"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:orientation="vertical">
 
             <ImageView
@@ -40,14 +42,14 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:ems="10"
+                android:hint="Nom"
                 android:inputType="text"
-                android:minHeight="48dp"
-                android:text="Name" />
+                android:minHeight="48dp" />
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="wrap_content"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:orientation="vertical">
 
             <ImageView
@@ -58,18 +60,19 @@
 
             <EditText
                 android:id="@+id/etxtLion"
+                style="@style/Widget.AppCompat.EditText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:ems="10"
+                android:hint="Nom"
                 android:inputType="text"
-                android:minHeight="48dp"
-                android:text="Name" />
+                android:minHeight="48dp" />
         </LinearLayout>
     </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:gravity="center_horizontal"
         android:orientation="horizontal">
 
@@ -89,9 +92,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:ems="10"
+                android:hint="Nom"
                 android:inputType="text"
-                android:minHeight="48dp"
-                android:text="Name" />
+                android:minHeight="48dp" />
         </LinearLayout>
 
         <LinearLayout
@@ -110,23 +113,28 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:ems="10"
+                android:hint="Nom"
                 android:inputType="text"
-                android:minHeight="48dp"
-                android:text="Name" />
+                android:minHeight="48dp" />
 
         </LinearLayout>
     </LinearLayout>
 
     <Button
         android:id="@+id/btnValid"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Check" />
+        android:layout_margin="20dp"
+        android:backgroundTint="#8BC34A"
+        android:text="Valider"
+        app:cornerRadius="10dp" />
 
     <Button
         android:id="@+id/btnNextLvl3"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Next" />
+        android:layout_margin="20dp"
+        android:text="Suivant"
+        app:cornerRadius="10dp" />
 
 </LinearLayout>
