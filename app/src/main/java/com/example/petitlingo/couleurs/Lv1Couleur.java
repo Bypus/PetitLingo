@@ -31,11 +31,8 @@ import java.util.Objects;
  */
 @SuppressLint("ValidFragment")
 public class Lv1Couleur extends Fragment {
-    private ImageView color1View;
-    private ImageView color2View;
-    private ImageView color3View;
-    private ImageView color4View;
     private static Couleurs couleurs;
+
     private String randomColor1;
     private String randomColor2;
     private String randomColor3;
@@ -46,12 +43,14 @@ public class Lv1Couleur extends Fragment {
     private TextView livesTextView;
     private Integer livesText;
 
+    // Constructeur vide
+    public Lv1Couleur() {
+    }
+
     public Lv1Couleur newInstance() {
         Lv1Couleur couleur1 = new Lv1Couleur();
         couleurs = new Couleurs();
         return couleur1;
-    }
-    public Lv1Couleur() {
     }
 
 
@@ -209,10 +208,11 @@ public class Lv1Couleur extends Fragment {
             colorView.setBackgroundColor(Color.parseColor(colorCodes[orderIndex]));
         }
 
-        // On récupère l'ID du bouton correspondant à la bonne couleur
-        Integer trueButtonId = getTrueColorButtonId(rootView);
-
         // Dans onViewCreated ou là où tu initialises tes ImageView
+        // On récupère l'ID du bouton correspondant à la bonne couleur
+        int trueButtonId = getTrueColorButtonId(rootView);
+
+        // On vérifie pour chaque bouton si l'ID correspond à celui de la bonne couleur
         ImageView btnClr1 = rootView.findViewById(R.id.color1);
         btnClr1.setOnClickListener(v -> handleImageClick(btnClr1.getId() == trueButtonId));
 
