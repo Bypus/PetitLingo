@@ -24,6 +24,7 @@ public class WinOrLoseFragment extends Fragment {
     public static final String RESULT_KEY = "result";
     public static final int RESULT_VICTORY = 1;
     public static final int RESULT_DEFEAT = 0;
+    public static final String POINTS_KEY = "0";
 
     public WinOrLoseFragment() {
         // Required empty public constructor
@@ -43,9 +44,9 @@ public class WinOrLoseFragment extends Fragment {
 
             // Mettre à jour le texte en fonction du résultat
             if (result == RESULT_VICTORY) {
-                resultTextView.setText("Bravo !");
+                resultTextView.setText("Bravo, tu as réussi à faire " + args.getInt(POINTS_KEY) + " points et il te reste " + args.getInt(POINTS_KEY) + " vies. Continue comme ça !");
             } else if (result == RESULT_DEFEAT) {
-                resultTextView.setText("Mince, ce n'est pas ça... Réessaye !");
+                resultTextView.setText("Bravo, tu as réussi à faire " + args.getInt(POINTS_KEY) + " points, mais tu as perdu toutes tes vies. Retente ta chance !");
             }
         }
 
