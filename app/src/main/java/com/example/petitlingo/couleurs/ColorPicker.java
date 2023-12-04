@@ -5,25 +5,19 @@ import java.util.Random;
 
 public class ColorPicker {
 
-    // Méthode pour choisir une couleur aléatoire
     public static String pickRandomColor(Map<String, Map<String, String>> colorsMap) {
-        // Vérifier si le tableau des couleurs n'est pas vide
         if (colorsMap.isEmpty()) {
             return "No colors available";
         }
 
-        // Générer un index aléatoire
-        int randomIndex = new Random().nextInt(colorsMap.size());
+        // Get a random color key
+        String[] colorKeys = colorsMap.keySet().toArray(new String[0]);
+        String randomColorKey = colorKeys[new Random().nextInt(colorKeys.length)];
 
-        // Récupérer la clé à l'index aléatoire
-        String randomColorKey = (String) colorsMap.keySet().toArray()[randomIndex];
-
-        // Récupérer la couleur associée à la clé
-
+        // Get the color code associated with the random key
         return getData(colorsMap, randomColorKey, "color");
     }
 
-    // Méthode pour obtenir des données du tableau associatif
     private static String getData(Map<String, Map<String, String>> colorsMap,
                                   String key, String subKey) {
         if (colorsMap.containsKey(key)) {
