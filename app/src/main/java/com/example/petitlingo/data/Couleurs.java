@@ -8,10 +8,10 @@ public class Couleurs {
         Map<String, Map<String, String>> colorsMap = new HashMap<>();
 
         // Ajouter les données au tableau
-        addData(colorsMap, "rouge", "#FF0000", "Red");
-        addData(colorsMap, "bleu", "#0000FF", "Blue");
-        addData(colorsMap, "jaune", "#FFFF00", "Yellow");
-        addData(colorsMap, "vert", "#00FF00", "Green");
+        addData(colorsMap, "rouge", "#F44336", "Red");
+        addData(colorsMap, "bleu", "#03A9F4", "Blue");
+        addData(colorsMap, "jaune", "#FFEB3B", "Yellow");
+        addData(colorsMap, "vert", "#8BC34A", "Green");
 
         // Accéder aux données dans le tableau
         String redColor = getData(colorsMap, "rouge", "color");

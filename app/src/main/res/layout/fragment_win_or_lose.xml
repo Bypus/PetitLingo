@@ -1,24 +1,25 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:orientation="vertical"
-    android:gravity="center">
+    android:gravity="center|center_horizontal|center_vertical"
+    android:orientation="vertical">
 
     <TextView
         android:id="@+id/resultTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_margin="16dp"
-        android:gravity="center"
         android:layout_gravity="center_horizontal|center_vertical"
-        android:text="Victoire"
-        android:textSize="24sp"
-        android:layout_marginTop="100dp"/>
+        android:layout_margin="16dp"
+        android:layout_marginTop="100dp"
+        android:gravity="center"
+        android:text="Victoire !"
+        android:textSize="34sp" />
 
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:gravity="center"
         android:orientation="horizontal">
 
         <Button
@@ -28,9 +29,10 @@
             android:layout_margin="5dp"
             android:layout_weight="1"
             android:backgroundTint="#FF9800"
-            app:cornerRadius="10dp"
             android:text="Retour au menu"
-/>
+            android:textSize="20sp"
+            android:textStyle="bold"
+            app:cornerRadius="10dp" />
 
         <Button
             android:id="@+id/retryButton"
@@ -39,8 +41,9 @@
             android:layout_margin="5dp"
             android:layout_weight="1"
             android:backgroundTint="#2196F3"
-            app:cornerRadius="10dp"
             android:text="Réessayer"
-/>
+            android:textSize="20sp"
+            android:textStyle="bold"
+            app:cornerRadius="10dp" />
     </LinearLayout>
 </LinearLayout>

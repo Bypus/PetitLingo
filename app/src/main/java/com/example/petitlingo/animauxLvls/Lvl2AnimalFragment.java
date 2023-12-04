@@ -1,4 +1,5 @@
 package com.example.petitlingo.animauxLvls;
+
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -16,13 +17,14 @@ public class Lvl2AnimalFragment extends Fragment implements View.OnClickListener
     private int countButtonsPressed = 0;
 
     public Lvl2AnimalFragment() {
-        // Required empty public constructor
+        // Constructeur public vide requis par les fragments
     }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+        // Initialiser les objets MediaPlayer avec les fichiers audio respectifs
         mediaPlayerCow = MediaPlayer.create(requireContext(), R.raw.cow);
         mediaPlayerLion = MediaPlayer.create(requireContext(), R.raw.lion);
         mediaPlayerGiraffe = MediaPlayer.create(requireContext(), R.raw.giraffe);
@@ -32,8 +34,10 @@ public class Lvl2AnimalFragment extends Fragment implements View.OnClickListener
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+        // Inflater la mise en page pour ce fragment
         View view = inflater.inflate(R.layout.fragment_lvl2_animal, container, false);
 
+        // Initialiser les boutons et définir les écouteurs de clic
         btnCow = view.findViewById(R.id.btnCow);
         btnLion = view.findViewById(R.id.btnLion);
         btnGiraffe = view.findViewById(R.id.btnGiraffe);
@@ -50,6 +54,7 @@ public class Lvl2AnimalFragment extends Fragment implements View.OnClickListener
     }
 
     private void playSound(MediaPlayer mediaPlayer) {
+        // Jouer le son correspondant à l'animal
         if (mediaPlayer != null) {
             mediaPlayer.seekTo(0);
             mediaPlayer.start();
@@ -57,15 +62,17 @@ public class Lvl2AnimalFragment extends Fragment implements View.OnClickListener
     }
 
     private void checkButtonsPressed() {
+        // Vérifier combien de boutons ont été pressés
         countButtonsPressed++;
         if (countButtonsPressed == 4) {
+            // Activer le bouton "Suivant" une fois que tous les boutons ont été pressés
             btnNextLvl2.setEnabled(true);
         }
     }
 
-
     @Override
     public void onClick(View view) {
+        // Gestionnaire de clics pour les boutons
         if (view.getId() == R.id.btnCow) {
             playSound(mediaPlayerCow);
             checkButtonsPressed();
@@ -79,11 +86,11 @@ public class Lvl2AnimalFragment extends Fragment implements View.OnClickListener
             playSound(mediaPlayerElephant);
             checkButtonsPressed();
         } else if (view.getId() == R.id.btnNextLvl2) {
-            // Reemplazar el fragmento actual con el nuevo fragmento
+            // Remplacer le fragment actuel par le nouveau fragment
             Lvl1AnimalFragment lvl1Fragment = new Lvl1AnimalFragment();
             requireActivity().getSupportFragmentManager().beginTransaction()
                     .replace(R.id.fragmentContainerView, lvl1Fragment)
-                    .addToBackStack(null)  // Esto agrega el fragmento al back stack, por si quieres realizar un retroceso
+                    .addToBackStack(null)  // Cela ajoute le fragment à la pile de retour, au cas où vous souhaitez effectuer un retour en arrière
                     .commit();
         }
     }
@@ -91,7 +98,7 @@ public class Lvl2AnimalFragment extends Fragment implements View.OnClickListener
     @Override
     public void onDestroy() {
         super.onDestroy();
-        // Liberar recursos de MediaPlayer
+        // Libérer les ressources du MediaPlayer
         mediaPlayerCow.release();
         mediaPlayerLion.release();
         mediaPlayerGiraffe.release();

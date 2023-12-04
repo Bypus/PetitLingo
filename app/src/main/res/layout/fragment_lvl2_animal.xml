@@ -95,5 +95,6 @@
         android:enabled="false"
         android:gravity="center|center_horizontal"
         android:text="Suivant"
+        android:textStyle="bold"
         app:cornerRadius="10dp" />
 </LinearLayout>

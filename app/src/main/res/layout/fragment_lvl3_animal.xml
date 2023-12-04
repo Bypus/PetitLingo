@@ -127,6 +127,7 @@
         android:layout_margin="20dp"
         android:backgroundTint="#8BC34A"
         android:text="Valider"
+        android:textStyle="bold"
         app:cornerRadius="10dp" />
 
     <Button
@@ -135,6 +136,7 @@
         android:layout_height="wrap_content"
         android:layout_margin="20dp"
         android:text="Suivant"
+        android:textStyle="bold"
         app:cornerRadius="10dp" />
 
 </LinearLayout>

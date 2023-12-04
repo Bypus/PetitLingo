@@ -2,10 +2,10 @@
 <resources>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
-    <color name="colorRed">#FF0000</color>
-    <color name="colorGreen">#0DCA00</color>
-    <color name="colorYellow">#FDFA0E</color>
-    <color name="colorBlue">#0E8DFD</color>
+    <color name="colorRed">#F44336</color>
+    <color name="colorGreen">#8BC34A</color>
+    <color name="colorYellow">#FFEB3B</color>
+    <color name="colorBlue">#03A9F4</color>
     <color name="correctColor">#4CAF50</color>
     <color name="incorrectColor">#F44336</color>
 </resources>

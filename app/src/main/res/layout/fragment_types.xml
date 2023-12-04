@@ -17,8 +17,10 @@
         android:layout_height="wrap_content"
         android:duplicateParentState="false"
         android:fontFamily="casual"
+
+        android:layout_margin="30dp"
         android:gravity="center_horizontal"
-        android:text="@string/hello_blank_fragment"
+        android:text="Choisi le niveau"
         android:textSize="60sp" />
 
     <LinearLayout
@@ -38,8 +40,9 @@
                 android:layout_height="80dp"
                 android:layout_margin="5dp"
                 android:layout_weight="1"
-                android:backgroundTint="#673AB7"
+                android:backgroundTint="#03A9F4"
                 android:text="Niveau 1"
+                android:textStyle="bold"
                 app:cornerRadius="10dp" />
 
             <Button
@@ -48,8 +51,9 @@
                 android:layout_height="80dp"
                 android:layout_margin="5dp"
                 android:layout_weight="1"
-                android:backgroundTint="#8BC34A"
+                android:backgroundTint="#9C27B0"
                 android:text="Niveau 2"
+                android:textStyle="bold"
                 app:cornerRadius="10dp" />
         </LinearLayout>
 
@@ -64,18 +68,9 @@
                 android:layout_height="80dp"
                 android:layout_margin="5dp"
                 android:layout_weight="1"
-                android:backgroundTint="#FF9800"
+                android:backgroundTint="#00BCD4"
                 android:text="Niveau 3"
-                app:cornerRadius="10dp" />
-
-            <Button
-                android:id="@+id/btnLvl4"
-                android:layout_width="match_parent"
-                android:layout_height="80dp"
-                android:layout_margin="5dp"
-                android:layout_weight="1"
-                android:backgroundTint="#2196F3"
-                android:text="Niveau 4"
+                android:textStyle="bold"
                 app:cornerRadius="10dp" />
 
         </LinearLayout>
