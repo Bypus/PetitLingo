@@ -11,6 +11,8 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
 import com.example.petitlingo.animauxLvls.Lvl1AnimalFragment;
+import com.example.petitlingo.animauxLvls.Lvl2AnimalFragment;
+import com.example.petitlingo.animauxLvls.Lvl3AnimalFragment;
 import com.example.petitlingo.couleurs.Couleur1;
 
 public class TypesFragment extends Fragment {
@@ -42,38 +44,51 @@ public class TypesFragment extends Fragment {
     }
 
     @Override
+
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         Fragment fragment;
-        switch (this.categorie) {
-            case "Couleur":
-                Couleur1 couleur1fragment = new Couleur1();
-                fragment = couleur1fragment.newInstance(); // Appelez ensuite newInstance() sur cette instance
-                break;
-            case "Animal":
-                Lvl1AnimalFragment animal1fragment = new Lvl1AnimalFragment();
-                fragment = animal1fragment;
-                break;
-//            case "Vetement":
-//                Vetement vetement1fragment = new Vetement();
-//                fragment = vetement1fragment;
-//                break;
-            default:
-                fragment = new Nvl1Fragment();
-                break;
-        }
 
-        Button btnNvl1 = view.findViewById(R.id.btnLvl1);
-        Fragment finalFragment = fragment;
-        btnNvl1.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                // Muestra la vista de temas
-                getActivity().getSupportFragmentManager().beginTransaction()
-                        .replace(R.id.fragmentContainerView, finalFragment)
-                        .addToBackStack(null)  // Opcional: agrega la transacción al back stack
-                        .commit();
-            }
-        });
+        // Identificadores de los botones
+        int[] buttonIds = {R.id.btnLvl1, R.id.btnLvl2, R.id.btnLvl3 /* Agrega más botones según sea necesario */};
+
+        for (int i = 0; i < buttonIds.length; i++) {
+            Button button = view.findViewById(buttonIds[i]);
+            final int nivel = i + 1; // Nivel es 1-indexado
+
+            button.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    // Muestra la vista del nivel seleccionado
+                    switch (categorie) {
+                        case "Animal":
+                            Fragment fragment;
+                            switch (nivel) {
+                                case 1:
+                                    fragment = new Lvl2AnimalFragment();
+                                    break;
+                                case 2:
+                                    fragment = new Lvl1AnimalFragment();
+                                    break;
+                                case 3:
+                                    fragment = new Lvl3AnimalFragment();
+                                    break;
+                                // Agrega más casos según sea necesario
+                                default:
+                                    fragment = new Nvl1Fragment();
+                                    break;
+                            }
+
+                            getActivity().getSupportFragmentManager().beginTransaction()
+                                    .replace(R.id.fragmentContainerView, fragment)
+                                    .addToBackStack(null)
+                                    .commit();
+                            break;
+                        // Agrega más casos según sea necesario
+                    }
+                }
+            });
+        }
     }
+
 }

@@ -1,75 +1,82 @@
 package com.example.petitlingo.animauxLvls;
-
 import android.content.ClipData;
-import android.media.Image;
 import android.os.Bundle;
-
-import androidx.fragment.app.Fragment;
 import android.view.DragEvent;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
-import android.widget.TextView;
 import android.widget.Toast;
-
+import androidx.fragment.app.Fragment;
 import com.example.petitlingo.R;
-
-
 public class Lvl1AnimalFragment extends Fragment {
-    private ImageView animalImage;
-    private TextView animalName;
-    private FrameLayout dropArea;
+    private ImageView animalImageElephant, animalImageLion, animalImageCow, animalImageGiraffe;
+    private FrameLayout dropAreaElephant, dropAreaLion, dropAreaCow, dropAreaGiraffe;
+    private boolean elephantInPlace, lionInPlace, cowInPlace, giraffeInPlace = false;
+
 
     public Lvl1AnimalFragment() {
         // Required empty public constructor
     }
-
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_lvl1_animal,container,false);
+        View view = inflater.inflate(R.layout.fragment_lvl1_animal, container, false);
 
-        animalImage = view.findViewById(R.id.imageAnimal);
-        animalName = view.findViewById(R.id.nameAnimal);
-        dropArea = view.findViewById(R.id.dropArea);
+        animalImageElephant = view.findViewById(R.id.imageAnimalElephant);
+        dropAreaElephant = view.findViewById(R.id.dropAreaElephant);
+        // Agregar oyente para arrastrar y soltar en dropAreaElephant
+        dropAreaElephant.setOnDragListener(new DropListener());
+        // Agregar función de soltar a la imagen
+        animalImageElephant.setOnTouchListener(new TouchListener());
 
-        //Inicialize fragment with first animal
-        showNextAnimal();
+        animalImageLion = view.findViewById(R.id.imageAnimalLion);
+        dropAreaLion = view.findViewById(R.id.dropAreaLion);
+        dropAreaLion.setOnDragListener(new DropListener());
+        animalImageLion.setOnTouchListener(new TouchListener());
 
-        //add listener to drag and drop in dropArea
-        dropArea.setOnDragListener(new DropListener());
+        animalImageCow = view.findViewById(R.id.imageAnimalCow);
+        dropAreaCow = view.findViewById(R.id.dropAreaCow);
+        dropAreaCow.setOnDragListener(new DropListener());
+        animalImageCow.setOnTouchListener(new TouchListener());
 
-        //add drop function
-        animalImage.setOnTouchListener(new TouchListener());
+        animalImageGiraffe = view.findViewById(R.id.imageAnimalGiraffe);
+        dropAreaGiraffe = view.findViewById(R.id.dropAreaGiraffe);
+        dropAreaGiraffe.setOnDragListener(new DropListener());
+        animalImageGiraffe.setOnTouchListener(new TouchListener());
+
         return view;
     }
-    private void showNextAnimal(){
-        //to get the next animal
-        String name = getNextAnimalName();
-        int imageId = getNextAnimalId();
-
-        //show animal in the interface
-        animalName.setText(name);
-        animalImage.setImageResource(imageId);
+    private void checkAllAnimalsInPlace() {
+        if (elephantInPlace && lionInPlace && cowInPlace && giraffeInPlace) {
+            // Habilita el botón "Next" cuando todos los animales están en su lugar
+            enableNextButton();
+        }
     }
 
-    private String getNextAnimalName() {
-        // Lógica para obtener el nombre del siguiente animal
-        // (puedes cargar datos desde una lista o recursos)
-        return "León"; // Ejemplo, debes ajustar esto según tus datos reales
-    }
-    private int getNextAnimalId() {
-        // Lógica para obtener el ID de recursos de la imagen del siguiente animal
-        // (puedes cargar datos desde una lista o recursos)
-        return R.drawable.baby_elephant; // Ejemplo, debes ajustar esto según tus datos reales
-    }
-    // Clase interna para gestionar el arrastrar y soltar
+    private void enableNextButton() {
+        Button btnNext = getView().findViewById(R.id.btnNext);
+        btnNext.setEnabled(true);
 
-    // Clase interna para gestionar el arrastrar y soltar
+        btnNext.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                // Reemplazar el fragmento actual con el nuevo fragmento (por ejemplo, Lvl2AnimalFragment)
+                Lvl3AnimalFragment lvl3Fragment = new Lvl3AnimalFragment();
+                requireActivity().getSupportFragmentManager().beginTransaction()
+                        .replace(R.id.fragmentContainerView, lvl3Fragment)
+                        .addToBackStack(null)
+                        .commit();
+            }
+        });
+    }
+
+
+
+
     private class TouchListener implements View.OnTouchListener {
         @Override
         public boolean onTouch(View v, MotionEvent event) {
@@ -78,7 +85,6 @@ public class Lvl1AnimalFragment extends Fragment {
                 ClipData data = ClipData.newPlainText("", "");
                 View.DragShadowBuilder shadowBuilder = new View.DragShadowBuilder(v);
                 v.startDragAndDrop(data, shadowBuilder, v, 0);
-
                 return true;
             } else {
                 return false;
@@ -86,27 +92,40 @@ public class Lvl1AnimalFragment extends Fragment {
         }
     }
 
-    //Class intern to manage drop event
-    private class DropListener implements View.OnDragListener{
-
+    private class DropListener implements View.OnDragListener {
         @Override
         public boolean onDrag(View view, DragEvent dragEvent) {
             int action = dragEvent.getAction();
             switch (action) {
                 case DragEvent.ACTION_DROP:
-                    // La imagen se soltó en el área designada
-                    // Puedes agregar la lógica aquí, como mostrar un mensaje o cargar el próximo animal7
-                    showToast("¡You dropped the animal!");
-                    showNextAnimal();
+                    int dropAreaId = view.getId();
+                    ImageView draggedImage = (ImageView) dragEvent.getLocalState();
+
+                    if (dropAreaId == R.id.dropAreaElephant && draggedImage.getId() == R.id.imageAnimalElephant) {
+                        elephantInPlace = true;
+                        showToast("Tu as placé l'éléphant correctement !");
+
+                    } else if (dropAreaId == R.id.dropAreaLion && draggedImage.getId() == R.id.imageAnimalLion) {
+                        lionInPlace = true;
+                        showToast("Tu as placé le lion correctement !");
+                    } else if (dropAreaId == R.id.dropAreaCow && draggedImage.getId() == R.id.imageAnimalCow) {
+                        cowInPlace = true;
+                        showToast("Tu as placé le cow correctement !");
+                    } else if (dropAreaId == R.id.dropAreaGiraffe && draggedImage.getId() == R.id.imageAnimalGiraffe) {
+                        giraffeInPlace = true;
+                        showToast("Tu as placé le giraffe correctement !");
+                    } else {
+                        showToast("Tu n'as pas placé le animal correctement !");
+                    }
+
+                    checkAllAnimalsInPlace();
                     break;
             }
             return true;
         }
     }
+
     private void showToast(String message) {
         Toast.makeText(getContext(), message, Toast.LENGTH_SHORT).show();
     }
-
-
-
 }
