@@ -1,5 +1,4 @@
 package com.example.petitlingo.animauxLvls;
-
 import android.content.ClipData;
 import android.os.Bundle;
 import android.view.DragEvent;
@@ -12,24 +11,28 @@ import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.Toast;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProvider;
 import com.example.petitlingo.R;
 
 public class Lvl1AnimalFragment extends Fragment {
+
     private ImageView animalImageElephant, animalImageLion, animalImageCow, animalImageGiraffe;
     private FrameLayout dropAreaElephant, dropAreaLion, dropAreaCow, dropAreaGiraffe;
-    private boolean elephantInPlace, lionInPlace, cowInPlace, giraffeInPlace = false;
+    private AnimalViewModel viewModel;
 
     public Lvl1AnimalFragment() {
-        // Constructeur public vide requis par les fragments
+        // Constructeur vide requis par Fragment
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflater la mise en page pour ce fragment
         View view = inflater.inflate(R.layout.fragment_lvl1_animal, container, false);
 
-        // Initialisation des vues et des zones de dépôt
+        // Initialiser le ViewModel
+        viewModel = new ViewModelProvider(requireActivity()).get(AnimalViewModel.class);
+
+        // Récupérer les références des vues (ImageView et FrameLayout) depuis le layout
         animalImageElephant = view.findViewById(R.id.imageAnimalElephant);
         dropAreaElephant = view.findViewById(R.id.dropAreaElephant);
         dropAreaElephant.setOnDragListener(new DropListener());
@@ -53,23 +56,23 @@ public class Lvl1AnimalFragment extends Fragment {
         return view;
     }
 
+    // Vérifie si tous les animaux sont à leur place
     private void checkAllAnimalsInPlace() {
-        // Vérifie si tous les animaux sont correctement placés
-        if (elephantInPlace && lionInPlace && cowInPlace && giraffeInPlace) {
-            // Active le bouton "Suivant" lorsque tous les animaux sont en place
-            enableNextButton();
+        if (viewModel.isElephantInPlace() && viewModel.isLionInPlace()
+                && viewModel.isCowInPlace() && viewModel.isGiraffeInPlace()) {
+            enableNextButton(); // Active le bouton Suivant si tous les animaux sont à leur place
         }
     }
 
+    // Active le bouton Suivant
     private void enableNextButton() {
-        // Active le bouton "Suivant" et définis son écouteur
-        Button btnNext = getView().findViewById(R.id.btnNext);
+        Button btnNext = requireView().findViewById(R.id.btnNext);
         btnNext.setEnabled(true);
 
         btnNext.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                // Remplace le fragment actuel par le nouveau fragment (par exemple, Lvl3AnimalFragment)
+                // Remplace le fragment actuel par le nouveau fragment (par exemple, Lvl2AnimalFragment)
                 Lvl3AnimalFragment lvl3Fragment = new Lvl3AnimalFragment();
                 requireActivity().getSupportFragmentManager().beginTransaction()
                         .replace(R.id.fragmentContainerView, lvl3Fragment)
@@ -79,13 +82,15 @@ public class Lvl1AnimalFragment extends Fragment {
         });
     }
 
+    // Écouteur tactile pour les images (début du glisser-déposer)
     private class TouchListener implements View.OnTouchListener {
         @Override
         public boolean onTouch(View v, MotionEvent event) {
-            // Gestionnaire de toucher pour démarrer l'opération de glisser-déposer
             if (event.getAction() == MotionEvent.ACTION_DOWN) {
+                // Préparer les données à transférer pendant le glisser-déposer
                 ClipData data = ClipData.newPlainText("", "");
                 View.DragShadowBuilder shadowBuilder = new View.DragShadowBuilder(v);
+                // Démarrer l'opération de glisser-déposer
                 v.startDragAndDrop(data, shadowBuilder, v, 0);
                 return true;
             } else {
@@ -94,34 +99,35 @@ public class Lvl1AnimalFragment extends Fragment {
         }
     }
 
+    // Écouteur de glisser-déposer pour les zones de dépôt
     private class DropListener implements View.OnDragListener {
         @Override
         public boolean onDrag(View view, DragEvent dragEvent) {
-            // Gestionnaire de glisser-déposer pour les zones de dépôt
             int action = dragEvent.getAction();
             switch (action) {
                 case DragEvent.ACTION_DROP:
+                    // Récupérer l'ID de la zone de dépôt et de l'image glissée
                     int dropAreaId = view.getId();
                     ImageView draggedImage = (ImageView) dragEvent.getLocalState();
 
-                    // Vérifie si l'animal est placé correctement dans la zone de dépôt spécifique
+                    // Vérifier si l'animal est placé correctement dans la zone correspondante
                     if (dropAreaId == R.id.dropAreaElephant && draggedImage.getId() == R.id.imageAnimalElephant) {
-                        elephantInPlace = true;
+                        viewModel.setElephantInPlace(true);
                         showToast("Tu as placé l'éléphant correctement !");
                     } else if (dropAreaId == R.id.dropAreaLion && draggedImage.getId() == R.id.imageAnimalLion) {
-                        lionInPlace = true;
+                        viewModel.setLionInPlace(true);
                         showToast("Tu as placé le lion correctement !");
                     } else if (dropAreaId == R.id.dropAreaCow && draggedImage.getId() == R.id.imageAnimalCow) {
-                        cowInPlace = true;
+                        viewModel.setCowInPlace(true);
                         showToast("Tu as placé la vache correctement !");
                     } else if (dropAreaId == R.id.dropAreaGiraffe && draggedImage.getId() == R.id.imageAnimalGiraffe) {
-                        giraffeInPlace = true;
+                        viewModel.setGiraffeInPlace(true);
                         showToast("Tu as placé la girafe correctement !");
                     } else {
                         showToast("Tu n'as pas placé l'animal correctement !");
                     }
 
-                    // Vérifie si tous les animaux sont en place après chaque opération de glisser-déposer
+                    // Vérifier si tous les animaux sont à leur place
                     checkAllAnimalsInPlace();
                     break;
             }
@@ -129,8 +135,8 @@ public class Lvl1AnimalFragment extends Fragment {
         }
     }
 
+    // Afficher un message toast
     private void showToast(String message) {
-        // Affiche un message Toast
         Toast.makeText(getContext(), message, Toast.LENGTH_SHORT).show();
     }
 }
