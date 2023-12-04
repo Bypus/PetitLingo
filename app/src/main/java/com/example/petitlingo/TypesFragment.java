@@ -77,16 +77,51 @@ public class TypesFragment extends Fragment {
                                     fragment = new Nvl1Fragment();
                                     break;
                             }
-
+                            // Agrega más casos según sea necesario
                             getActivity().getSupportFragmentManager().beginTransaction()
                                     .replace(R.id.fragmentContainerView, fragment)
                                     .addToBackStack(null)
                                     .commit();
                             break;
-                        // Agrega más casos según sea necesario
+                        case "Couleur":
+                            Lv1Couleur couleur1fragment = new Lv1Couleur();
+                            fragment = couleur1fragment.newInstance(); // Appelez ensuite newInstance() sur cette instance
+                            break;
+            //            case "Vetement":
+            //                Vetement vetement1fragment = new Vetement();
+            //                fragment = vetement1fragment;
+            //                break;
+                        default:
+                            fragment = new Nvl1Fragment();
+                            break;
+
                     }
                 }
             });
         }
+        Button btnNvl1 = view.findViewById(R.id.btnLvl1);
+        Fragment finalFragment = fragment;
+        btnNvl1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Muestra la vista de temas
+                getActivity().getSupportFragmentManager().beginTransaction()
+                        .replace(R.id.fragmentContainerView, finalFragment)
+                        .addToBackStack(null)  // Opcional: agrega la transacción al back stack
+                        .commit();
+            }
+        });
+
+        Button btnNvl2 = view.findViewById(R.id.btnLvl2);
+        btnNvl2.setEnabled(false); // Rend le bouton non cliquable
+        btnNvl2.setAlpha(0.5f); // Change l'opacité pour griser visuellement le bouton
+
+        Button btnNvl3 = view.findViewById(R.id.btnLvl3);
+        btnNvl3.setEnabled(false);
+        btnNvl3.setAlpha(0.5f);
+
+        Button btnNvl4 = view.findViewById(R.id.btnLvl4);
+        btnNvl4.setEnabled(false);
+        btnNvl4.setAlpha(0.5f);
     }
 }
