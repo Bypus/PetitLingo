@@ -2,6 +2,7 @@ package com.example.petitlingo.data;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Random;
 
 public class Couleurs {
     public Map<String, Map<String, String>> tabColors(){
@@ -45,6 +46,20 @@ public class Couleurs {
             }
         }
         return "Not found";
+    }
+
+    //Méthode pour prendre des couleurs aléatoirement
+    public static String pickRandomColor(Map<String, Map<String, String>> colorsMap) {
+        if (colorsMap.isEmpty()) {
+            return "No colors available";
+        }
+
+        // Prend une clé aléatoire
+        String[] colorKeys = colorsMap.keySet().toArray(new String[0]);
+        String randomColorKey = colorKeys[new Random().nextInt(colorKeys.length)];
+
+        // Prend la couleur associée à la clé
+        return getData(colorsMap, randomColorKey, "color");
     }
 
     //Méthode pour obtenir le nom de la couleur à partir de son code

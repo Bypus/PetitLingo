@@ -11,7 +11,7 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
 import com.example.petitlingo.animauxLvls.Lvl1AnimalFragment;
-import com.example.petitlingo.couleurs.Lv1Couleur;
+import com.example.petitlingo.couleursLvls.Lv1Couleur;
 import com.example.petitlingo.animauxLvls.Lvl2AnimalFragment;
 import com.example.petitlingo.animauxLvls.Lvl3AnimalFragment;
 
