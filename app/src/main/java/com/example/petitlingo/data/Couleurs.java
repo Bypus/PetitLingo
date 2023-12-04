@@ -8,10 +8,10 @@ public class Couleurs {
         Map<String, Map<String, String>> colorsMap = new HashMap<>();
 
         // Ajouter les données au tableau
-        addData(colorsMap, "rouge", "#FF0000", "red");
-        addData(colorsMap, "bleu", "#0000FF", "blue");
-        addData(colorsMap, "jaune", "#FFFF00", "yellow");
-        addData(colorsMap, "vert", "#00FF00", "green");
+        addData(colorsMap, "rouge", "#FF0000", "Red");
+        addData(colorsMap, "bleu", "#0000FF", "Blue");
+        addData(colorsMap, "jaune", "#FFFF00", "Yellow");
+        addData(colorsMap, "vert", "#00FF00", "Green");
 
         // Accéder aux données dans le tableau
         String redColor = getData(colorsMap, "rouge", "color");
@@ -40,6 +40,15 @@ public class Couleurs {
             Map<String, String> colorData = colorsMap.get(key);
             if (colorData.containsKey(subKey)) {
                 return colorData.get(subKey);
+            }
+        }
+        return "Not found";
+    }
+    public static String getTextForColorCode(Map<String, Map<String, String>> colorsMap, String colorCode) {
+        for (Map.Entry<String, Map<String, String>> entry : colorsMap.entrySet()) {
+            Map<String, String> colorData = entry.getValue();
+            if (colorData.containsKey("color") && colorData.get("color").equalsIgnoreCase(colorCode)) {
+                return colorData.get("text");
             }
         }
         return "Not found";

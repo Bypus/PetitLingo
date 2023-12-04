@@ -41,6 +41,8 @@ public class Couleur1 extends Fragment {
     private String randomColor2;
     private String randomColor3;
     private String trueColor;
+    private TextView trueColorTextView;
+    private String trueColorText;
 
     private Integer Case;
 
@@ -78,8 +80,10 @@ public class Couleur1 extends Fragment {
             this.randomColor3 = ColorPicker.pickRandomColor(colorsMap);
         }
         this.trueColor = ColorPicker.pickRandomColor(colorsMap);
+        this.trueColorText = Couleurs.getTextForColorCode(colorsMap, this.trueColor);
         while (Objects.equals(this.trueColor, this.randomColor1) || Objects.equals(this.trueColor, this.randomColor2) || Objects.equals(this.trueColor, this.randomColor3)){
             this.trueColor = ColorPicker.pickRandomColor(colorsMap);
+            this.trueColorText = Couleurs.getTextForColorCode(colorsMap, this.trueColor);
         }
     }
 
@@ -149,6 +153,11 @@ public class Couleur1 extends Fragment {
         color2View = rootView.findViewById(R.id.color2);
         color3View = rootView.findViewById(R.id.color3);
         color4View = rootView.findViewById(R.id.color4);
+        trueColorTextView = rootView.findViewById(R.id.trueColorText);
+
+        // Afficher la couleur à deviner
+
+        trueColorTextView.setText(trueColorText);
 
         // Utiliser les méthodes pour obtenir le code de chaque couleur
         // Génération d'un nombre aléatoire entre 1 et 4 pour décider de la bonne couleur
@@ -188,6 +197,8 @@ public class Couleur1 extends Fragment {
             colorView.setBackgroundColor(Color.parseColor(colorCodes[orderIndex]));
         }
     }
+
+
 
 
 }
