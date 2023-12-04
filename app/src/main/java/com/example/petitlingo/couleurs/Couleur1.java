@@ -175,7 +175,7 @@ public class Couleur1 extends Fragment {
         trueColorTextView = rootView.findViewById(R.id.trueColorText);
 
         // Afficher la couleur à deviner
-        trueColorTextView.setText("Trouve la couleur " + trueColorText + " !");
+        trueColorTextView.setText(trueColorText + " !");
 
         // Utiliser les méthodes pour obtenir le code de chaque couleur
         // Génération d'un nombre aléatoire entre 1 et 4 pour décider de la bonne couleur

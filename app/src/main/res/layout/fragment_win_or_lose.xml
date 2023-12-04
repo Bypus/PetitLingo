@@ -9,6 +9,7 @@
         android:id="@+id/resultTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_gravity="center"
         android:text="Victoire"
         android:textSize="24sp"
         android:layout_marginTop="100dp"/>
@@ -20,7 +21,7 @@
 
         <Button
             android:id="@+id/menuButton"
-            android:layout_width="150dp"
+            android:layout_width="160dp"
             android:layout_height="80dp"
             android:layout_margin="5dp"
             android:layout_weight="1"
@@ -31,7 +32,7 @@
 
         <Button
             android:id="@+id/retryButton"
-            android:layout_width="150dp"
+            android:layout_width="160dp"
             android:layout_height="80dp"
             android:layout_margin="5dp"
             android:layout_weight="1"
