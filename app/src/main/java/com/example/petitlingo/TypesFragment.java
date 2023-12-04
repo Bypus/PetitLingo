@@ -11,9 +11,9 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
 import com.example.petitlingo.animauxLvls.Lvl1AnimalFragment;
+import com.example.petitlingo.couleurs.Lv1Couleur;
 import com.example.petitlingo.animauxLvls.Lvl2AnimalFragment;
 import com.example.petitlingo.animauxLvls.Lvl3AnimalFragment;
-import com.example.petitlingo.couleurs.Couleur1;
 
 public class TypesFragment extends Fragment {
 
@@ -44,7 +44,6 @@ public class TypesFragment extends Fragment {
     }
 
     @Override
-
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         Fragment fragment;
@@ -90,5 +89,4 @@ public class TypesFragment extends Fragment {
             });
         }
     }
-
 }

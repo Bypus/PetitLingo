@@ -98,8 +98,11 @@ public class WelcomeFragment extends Fragment {
                 // Ajouter à la pile de retour en arrière si nécessaire
                 fragmentTransaction.addToBackStack(null);
                 fragmentTransaction.commit();
+
             }
         });
+        binding.CatVetements.setEnabled(false); // Rend le bouton non cliquable
+        binding.CatVetements.setAlpha(0.5f); // Change l'opacité pour griser visuellement le bouton
 
     }
 }
