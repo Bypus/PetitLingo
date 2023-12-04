@@ -32,41 +32,31 @@ import java.util.Objects;
  */
 @SuppressLint("ValidFragment")
 public class Couleur1 extends Fragment {
-    private ImageView color1View;
-    private ImageView color2View;
-    private ImageView color3View;
-    private ImageView color4View;
     private static Couleurs couleurs;
-
     private String randomColor1;
     private String randomColor2;
     private String randomColor3;
     private String trueColor;
-    private TextView trueColorTextView;
     private String trueColorText;
     private TextView pointsTextView;
     private Integer pointsText;
     private TextView livesTextView;
     private Integer livesText;
 
-    private Integer Case;
-
-    private static Map<String, Map<String, String>> colorsMap;
-
+    // Constructeur vide
+    public Couleur1() {
+    }
 
     public Couleur1 newInstance() {
         Couleur1 couleur1 = new Couleur1();
         couleurs = new Couleurs();
-
         return couleur1;
     }
-    public Couleur1() {
-    }
-
 
     public void instanciateView() {
-        colorsMap = couleurs.tabColors();
+        Map<String, Map<String, String>> colorsMap = couleurs.tabColors();
 
+        // Génération des couleurs de manière aléatoire + vérification qu'il n'y ai pas deux fois la même
         Log.d("ColorPicker", "Colors Map: " + colorsMap.toString());
         this.randomColor1 = ColorPicker.pickRandomColor(colorsMap);
         Log.d("ColorPicker", "Random Color 1: " + randomColor1);
@@ -91,10 +81,13 @@ public class Couleur1 extends Fragment {
         View rootView = inflater.inflate(R.layout.fragment_couleur1, container, false);
         instanciateView();
         generateGame(rootView);
+
+        // Initialisation du systeme de vie et de points
         this.pointsTextView = rootView.findViewById(R.id.colorPoints);
         this.livesTextView = rootView.findViewById(R.id.colorLives);
         this.pointsText = 0;
         this.livesText = 3;
+
         return rootView;
     }
 
@@ -163,17 +156,17 @@ public class Couleur1 extends Fragment {
     }
 
     private void generateGame(View rootView) {
-        // Initialisez les TextView
+        // Initialisation des TextView
         TextView viesTextView = rootView.findViewById(R.id.colorLives);
         TextView pointsTextView = rootView.findViewById(R.id.colorPoints);
 
 
-        // Initialisez les ImageView
-        color1View = rootView.findViewById(R.id.color1);
-        color2View = rootView.findViewById(R.id.color2);
-        color3View = rootView.findViewById(R.id.color3);
-        color4View = rootView.findViewById(R.id.color4);
-        trueColorTextView = rootView.findViewById(R.id.trueColorText);
+        // Initialisation des ImageView
+        ImageView color1View = rootView.findViewById(R.id.color1);
+        ImageView color2View = rootView.findViewById(R.id.color2);
+        ImageView color3View = rootView.findViewById(R.id.color3);
+        ImageView color4View = rootView.findViewById(R.id.color4);
+        TextView trueColorTextView = rootView.findViewById(R.id.trueColorText);
 
         trueColorTextView.setText(trueColorText);
 
@@ -215,7 +208,7 @@ public class Couleur1 extends Fragment {
             colorView.setBackgroundColor(Color.parseColor(colorCodes[orderIndex]));
         }
 
-        Integer trueButtonId = getTrueColorButtonId(rootView);
+        int trueButtonId = getTrueColorButtonId(rootView);
         // Dans onViewCreated ou là où tu initialises tes ImageView
         ImageView btnClr1 = rootView.findViewById(R.id.color1);
         btnClr1.setOnClickListener(v -> handleImageClick(btnClr1.getId() == trueButtonId));
