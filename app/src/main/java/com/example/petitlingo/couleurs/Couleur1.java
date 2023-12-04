@@ -129,7 +129,7 @@ public class Couleur1 extends Fragment {
             livesTextView.setText(livesText.toString());
             if (livesText == 0){
                 args.putInt(WinOrLoseFragment.RESULT_KEY, WinOrLoseFragment.RESULT_DEFEAT);
-                args.putInt(WinOrLoseFragment.POINTS_KEY, Integer.valueOf(pointsText));
+                args.putInt(WinOrLoseFragment.POINTS_KEY, pointsText);
                 WinOrLoseFragment winOrLoseFragment = new WinOrLoseFragment();
                 winOrLoseFragment.setArguments(args);
 
@@ -142,6 +142,8 @@ public class Couleur1 extends Fragment {
 
         if (pointsText == 5){
             args.putInt(WinOrLoseFragment.RESULT_KEY, WinOrLoseFragment.RESULT_VICTORY);
+            args.putInt(WinOrLoseFragment.POINTS_KEY, pointsText);
+            args.putInt(WinOrLoseFragment.POINTS_LIFE, livesText);
             WinOrLoseFragment winOrLoseFragment = new WinOrLoseFragment();
             winOrLoseFragment.setArguments(args);
 
