@@ -12,6 +12,8 @@ public class Couleurs {
         addData(colorsMap, "bleu", "#03A9F4", "Blue");
         addData(colorsMap, "jaune", "#FFEB3B", "Yellow");
         addData(colorsMap, "vert", "#8BC34A", "Green");
+        addData(colorsMap, "violet", "#852EEB", "Purple");
+        addData(colorsMap, "marron", "#774B2C", "Brown");
 
         // Accéder aux données dans le tableau
         String redColor = getData(colorsMap, "rouge", "color");
