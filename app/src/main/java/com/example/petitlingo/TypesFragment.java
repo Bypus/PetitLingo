@@ -11,7 +11,7 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
 import com.example.petitlingo.animauxLvls.Lvl1AnimalFragment;
-import com.example.petitlingo.couleurs.Couleur1;
+import com.example.petitlingo.couleurs.Lv1Couleur;
 
 public class TypesFragment extends Fragment {
 
@@ -47,7 +47,7 @@ public class TypesFragment extends Fragment {
         Fragment fragment;
         switch (this.categorie) {
             case "Couleur":
-                Couleur1 couleur1fragment = new Couleur1();
+                Lv1Couleur couleur1fragment = new Lv1Couleur();
                 fragment = couleur1fragment.newInstance(); // Appelez ensuite newInstance() sur cette instance
                 break;
             case "Animal":
@@ -75,5 +75,17 @@ public class TypesFragment extends Fragment {
                         .commit();
             }
         });
+
+        Button btnNvl2 = view.findViewById(R.id.btnLvl2);
+        btnNvl2.setEnabled(false); // Rend le bouton non cliquable
+        btnNvl2.setAlpha(0.5f); // Change l'opacité pour griser visuellement le bouton
+
+        Button btnNvl3 = view.findViewById(R.id.btnLvl3);
+        btnNvl3.setEnabled(false);
+        btnNvl3.setAlpha(0.5f);
+
+        Button btnNvl4 = view.findViewById(R.id.btnLvl4);
+        btnNvl4.setEnabled(false);
+        btnNvl4.setAlpha(0.5f);
     }
 }

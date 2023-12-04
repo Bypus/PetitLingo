@@ -5,7 +5,6 @@ import android.annotation.SuppressLint;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
 
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
@@ -31,7 +30,7 @@ import java.util.Objects;
  * create an instance of this fragment.
  */
 @SuppressLint("ValidFragment")
-public class Couleur1 extends Fragment {
+public class Lv1Couleur extends Fragment {
     private ImageView color1View;
     private ImageView color2View;
     private ImageView color3View;
@@ -54,13 +53,13 @@ public class Couleur1 extends Fragment {
     private static Map<String, Map<String, String>> colorsMap;
 
 
-    public Couleur1 newInstance() {
-        Couleur1 couleur1 = new Couleur1();
+    public Lv1Couleur newInstance() {
+        Lv1Couleur couleur1 = new Lv1Couleur();
         couleurs = new Couleurs();
 
         return couleur1;
     }
-    public Couleur1() {
+    public Lv1Couleur() {
     }
 
 
@@ -159,7 +158,6 @@ public class Couleur1 extends Fragment {
         super.onViewCreated(view, savedInstanceState);
         instanciateView();
         generateGame(this.getView());
-
     }
 
     private void generateGame(View rootView) {
@@ -215,8 +213,10 @@ public class Couleur1 extends Fragment {
             colorView.setBackgroundColor(Color.parseColor(colorCodes[orderIndex]));
         }
 
+        // On récupère l'ID du bouton correspondant à la bonne couleur
         Integer trueButtonId = getTrueColorButtonId(rootView);
-        // Dans onViewCreated ou là où tu initialises tes ImageView
+
+        // On vérifie pour chaque bouton si l'ID correspond à celui de la bonne couleur
         ImageView btnClr1 = rootView.findViewById(R.id.color1);
         btnClr1.setOnClickListener(v -> handleImageClick(btnClr1.getId() == trueButtonId));
 
