@@ -46,7 +46,10 @@ public class WinOrLoseFragment extends Fragment {
             if (result == RESULT_VICTORY) {
                 resultTextView.setText("Bravo, tu as réussi à faire " + args.getInt(POINTS_KEY) + " points et il te reste " + args.getInt(POINTS_KEY) + " vies. Continue comme ça !");
             } else if (result == RESULT_DEFEAT) {
-                resultTextView.setText("Bravo, tu as réussi à faire " + args.getInt(POINTS_KEY) + " points, mais tu as perdu toutes tes vies. Retente ta chance !");
+                if (args.getInt(POINTS_KEY) == 0)
+                    resultTextView.setText("Dommage, tu n'as pas réussi à faire de points et tu as perdu toutes tes vies. Retente ta chance !");
+                else
+                    resultTextView.setText("Bravo, tu as réussi à faire " + args.getInt(POINTS_KEY) + " points, mais tu as perdu toutes tes vies. Retente ta chance !");
             }
         }
 

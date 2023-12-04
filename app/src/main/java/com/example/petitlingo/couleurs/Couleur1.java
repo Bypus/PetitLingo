@@ -115,19 +115,6 @@ public class Couleur1 extends Fragment {
         return -1; // Si aucun bouton correspondant n'est trouvé
     }
 
-    // Mettre à jour les données et remplacer le fragment actuel par WinOrLoseFragment
-//    private void handleImageClick(boolean isVictory) {
-//        Bundle args = new Bundle();
-//        args.putInt(WinOrLoseFragment.RESULT_KEY, isVictory ? WinOrLoseFragment.RESULT_VICTORY : WinOrLoseFragment.RESULT_DEFEAT);
-//
-//        WinOrLoseFragment winOrLoseFragment = new WinOrLoseFragment();
-//        winOrLoseFragment.setArguments(args);
-//
-//        requireActivity().getSupportFragmentManager().beginTransaction()
-//                .replace(R.id.fragmentContainerView, winOrLoseFragment)
-//                .addToBackStack(null)
-//                .commit();
-//    }
 
     @SuppressLint("SetTextI18n")
     private void handleImageClick(boolean isVictory) {
@@ -142,6 +129,7 @@ public class Couleur1 extends Fragment {
             livesTextView.setText(livesText.toString());
             if (livesText == 0){
                 args.putInt(WinOrLoseFragment.RESULT_KEY, WinOrLoseFragment.RESULT_DEFEAT);
+                args.putInt(WinOrLoseFragment.POINTS_KEY, Integer.valueOf(pointsText));
                 WinOrLoseFragment winOrLoseFragment = new WinOrLoseFragment();
                 winOrLoseFragment.setArguments(args);
 
@@ -150,6 +138,17 @@ public class Couleur1 extends Fragment {
                         .addToBackStack(null)
                         .commit();
             }
+        }
+
+        if (pointsText == 5){
+            args.putInt(WinOrLoseFragment.RESULT_KEY, WinOrLoseFragment.RESULT_VICTORY);
+            WinOrLoseFragment winOrLoseFragment = new WinOrLoseFragment();
+            winOrLoseFragment.setArguments(args);
+
+            requireActivity().getSupportFragmentManager().beginTransaction()
+                    .replace(R.id.fragmentContainerView, winOrLoseFragment)
+                    .addToBackStack(null)
+                    .commit();
         }
     }
 
@@ -174,8 +173,7 @@ public class Couleur1 extends Fragment {
         color4View = rootView.findViewById(R.id.color4);
         trueColorTextView = rootView.findViewById(R.id.trueColorText);
 
-        // Afficher la couleur à deviner
-        trueColorTextView.setText(trueColorText + " !");
+        trueColorTextView.setText(trueColorText);
 
         // Utiliser les méthodes pour obtenir le code de chaque couleur
         // Génération d'un nombre aléatoire entre 1 et 4 pour décider de la bonne couleur
@@ -211,7 +209,7 @@ public class Couleur1 extends Fragment {
             int orderIndex = order[i];
             int colorViewId = getResources().getIdentifier("color" + (i + 1), "id", getActivity().getPackageName());
             ImageView colorView = rootView.findViewById(colorViewId);
-            Log.d("log : " ,colorCodes[orderIndex]);
+            Log.d("log : ", colorCodes[orderIndex]);
             colorView.setBackgroundColor(Color.parseColor(colorCodes[orderIndex]));
         }
 
