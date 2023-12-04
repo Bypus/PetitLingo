@@ -45,7 +45,7 @@ public class Lv1Couleur extends Fragment {
     private Integer livesText;
 
     // Constructeur vide
-    public Couleur1() {
+    public Lv1Couleur() {
     }
 
     public Lv1Couleur newInstance() {
@@ -209,10 +209,9 @@ public class Lv1Couleur extends Fragment {
             colorView.setBackgroundColor(Color.parseColor(colorCodes[orderIndex]));
         }
 
-        int trueButtonId = getTrueColorButtonId(rootView);
         // Dans onViewCreated ou là où tu initialises tes ImageView
         // On récupère l'ID du bouton correspondant à la bonne couleur
-        Integer trueButtonId = getTrueColorButtonId(rootView);
+        int trueButtonId = getTrueColorButtonId(rootView);
 
         // On vérifie pour chaque bouton si l'ID correspond à celui de la bonne couleur
         ImageView btnClr1 = rootView.findViewById(R.id.color1);
