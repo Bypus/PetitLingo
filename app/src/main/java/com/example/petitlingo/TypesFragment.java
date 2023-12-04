@@ -54,7 +54,10 @@ public class TypesFragment extends Fragment {
         for (int i = 0; i < buttonIds.length; i++) {
             Button button = view.findViewById(buttonIds[i]);
             final int nivel = i + 1; // Nivel es 1-indexado
-
+            if (categorie != "Animal" && nivel > 1) {
+                button.setEnabled(false);
+                button.setAlpha(0.5f);
+            }
             button.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -85,24 +88,40 @@ public class TypesFragment extends Fragment {
                                     .commit();
                             break;
                         case "Couleur":
-                            Lv1Couleur couleur1fragment = new Lv1Couleur();
-                            fragment = couleur1fragment.newInstance(); // Appelez ensuite newInstance() sur cette instance
+                            switch (nivel) {
+                                case 1:
+                                    Lv1Couleur couleur1fragment = new Lv1Couleur();
+                                    fragment = couleur1fragment.newInstance();
+                                    break;
+                                case 2:
+//                                    Lv2Couleur couleur2fragment = new Lv2Couleur();
+                                    fragment = new Fragment(); // couleur2fragment.newInstance();
+                                    break;
+                                case 3:
+//                                    Lv2Couleur couleur3fragment = new Lv3Couleur();
+                                    fragment = new Fragment(); // couleur3fragment.newInstance();
+                                    break;
+                                // Agrega más casos según sea necesario
+                                default:
+                                    fragment = new Fragment();
+                                    break;
+                            }
+                            Fragment finalFragment = fragment;
+                            getActivity().getSupportFragmentManager().beginTransaction()
+                                    .replace(R.id.fragmentContainerView, finalFragment)
+                                    .addToBackStack(null)  // Opcional: agrega la transacción al back stack
+                                    .commit();
+
                             break;
-            //            case "Vetement":
-            //                Vetement vetement1fragment = new Vetement();
-            //                fragment = vetement1fragment;
-            //                break;
+//                        case "Vetement":
+//                            Vetement vetement1fragment = new Vetement();
+//                            fragment = vetement1fragment;
+//                            break;
                         default:
                             fragment = new Nvl1Fragment();
                             break;
 
-
                     }
-                    Fragment finalFragment = fragment;
-                    getActivity().getSupportFragmentManager().beginTransaction()
-                            .replace(R.id.fragmentContainerView, finalFragment)
-                            .addToBackStack(null)  // Opcional: agrega la transacción al back stack
-                            .commit();
 
                 }
             });
