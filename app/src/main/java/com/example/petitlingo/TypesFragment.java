@@ -120,9 +120,7 @@ public class TypesFragment extends Fragment {
                         default:
                             fragment = new Nvl1Fragment();
                             break;
-
                     }
-
                 }
             });
         }
