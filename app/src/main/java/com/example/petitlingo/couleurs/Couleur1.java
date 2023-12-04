@@ -44,6 +44,10 @@ public class Couleur1 extends Fragment {
     private String trueColor;
     private TextView trueColorTextView;
     private String trueColorText;
+    private TextView pointsTextView;
+    private Integer pointsText;
+    private TextView livesTextView;
+    private Integer livesText;
 
     private Integer Case;
 
@@ -52,21 +56,15 @@ public class Couleur1 extends Fragment {
 
     public Couleur1 newInstance() {
         Couleur1 couleur1 = new Couleur1();
+        couleurs = new Couleurs();
 
         return couleur1;
     }
     public Couleur1() {
     }
 
-    public static String getColorCode(String whichColor){
-        return Couleurs.getData(colorsMap, whichColor, "code");
-    }
-    public static String getColorText(String whichColor){
-        return Couleurs.getData(colorsMap, whichColor, "text");
-    }
 
     public void instanciateView() {
-        couleurs = new Couleurs();
         colorsMap = couleurs.tabColors();
 
         Log.d("ColorPicker", "Colors Map: " + colorsMap.toString());
@@ -93,6 +91,10 @@ public class Couleur1 extends Fragment {
         View rootView = inflater.inflate(R.layout.fragment_couleur1, container, false);
         instanciateView();
         generateGame(rootView);
+        this.pointsTextView = rootView.findViewById(R.id.colorPoints);
+        this.livesTextView = rootView.findViewById(R.id.colorLives);
+        this.pointsText = 0;
+        this.livesText = 3;
         return rootView;
     }
 
@@ -113,18 +115,29 @@ public class Couleur1 extends Fragment {
         return -1; // Si aucun bouton correspondant n'est trouvé
     }
 
-    // Mettre à jour les données et remplacer le fragment actuel par WinOrLoseFragment
+
+    @SuppressLint("SetTextI18n")
     private void handleImageClick(boolean isVictory) {
         Bundle args = new Bundle();
-        args.putInt(WinOrLoseFragment.RESULT_KEY, isVictory ? WinOrLoseFragment.RESULT_VICTORY : WinOrLoseFragment.RESULT_DEFEAT);
+        if (isVictory){
+            pointsText += 1;
+            pointsTextView.setText(pointsText.toString());
+            instanciateView();
+            generateGame(this.getView());
+        } else {
+            livesText -= 1;
+            livesTextView.setText(livesText.toString());
+            if (livesText == 0){
+                args.putInt(WinOrLoseFragment.RESULT_KEY, WinOrLoseFragment.RESULT_DEFEAT);
+                WinOrLoseFragment winOrLoseFragment = new WinOrLoseFragment();
+                winOrLoseFragment.setArguments(args);
 
-        WinOrLoseFragment winOrLoseFragment = new WinOrLoseFragment();
-        winOrLoseFragment.setArguments(args);
-
-        requireActivity().getSupportFragmentManager().beginTransaction()
-                .replace(R.id.fragmentContainerView, winOrLoseFragment)
-                .addToBackStack(null)
-                .commit();
+                requireActivity().getSupportFragmentManager().beginTransaction()
+                        .replace(R.id.fragmentContainerView, winOrLoseFragment)
+                        .addToBackStack(null)
+                        .commit();
+            }
+        }
     }
 
     @Override
@@ -132,20 +145,6 @@ public class Couleur1 extends Fragment {
         super.onViewCreated(view, savedInstanceState);
         instanciateView();
         generateGame(this.getView());
-
-        Integer trueButtonId = getTrueColorButtonId(view);
-        // Dans onViewCreated ou là où tu initialises tes ImageView
-        ImageView btnClr1 = view.findViewById(R.id.color1);
-        btnClr1.setOnClickListener(v -> handleImageClick(btnClr1.getId() == trueButtonId));
-
-        ImageView btnClr2 = view.findViewById(R.id.color2);
-        btnClr2.setOnClickListener(v -> handleImageClick(btnClr2.getId() == trueButtonId));
-
-        ImageView btnClr3 = view.findViewById(R.id.color3);
-        btnClr3.setOnClickListener(v -> handleImageClick(btnClr3.getId() == trueButtonId));
-
-        ImageView btnClr4 = view.findViewById(R.id.color4);
-        btnClr4.setOnClickListener(v -> handleImageClick(btnClr4.getId() == trueButtonId));
 
     }
 
@@ -161,8 +160,6 @@ public class Couleur1 extends Fragment {
         color3View = rootView.findViewById(R.id.color3);
         color4View = rootView.findViewById(R.id.color4);
         trueColorTextView = rootView.findViewById(R.id.trueColorText);
-
-        // Afficher la couleur à deviner
 
         trueColorTextView.setText(trueColorText);
 
@@ -203,6 +200,20 @@ public class Couleur1 extends Fragment {
             Log.d("log : " ,colorCodes[orderIndex]);
             colorView.setBackgroundColor(Color.parseColor(colorCodes[orderIndex]));
         }
+
+        Integer trueButtonId = getTrueColorButtonId(rootView);
+        // Dans onViewCreated ou là où tu initialises tes ImageView
+        ImageView btnClr1 = rootView.findViewById(R.id.color1);
+        btnClr1.setOnClickListener(v -> handleImageClick(btnClr1.getId() == trueButtonId));
+
+        ImageView btnClr2 = rootView.findViewById(R.id.color2);
+        btnClr2.setOnClickListener(v -> handleImageClick(btnClr2.getId() == trueButtonId));
+
+        ImageView btnClr3 = rootView.findViewById(R.id.color3);
+        btnClr3.setOnClickListener(v -> handleImageClick(btnClr3.getId() == trueButtonId));
+
+        ImageView btnClr4 = rootView.findViewById(R.id.color4);
+        btnClr4.setOnClickListener(v -> handleImageClick(btnClr4.getId() == trueButtonId));
     }
 
 
