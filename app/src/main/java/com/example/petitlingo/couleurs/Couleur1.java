@@ -147,41 +147,6 @@ public class Couleur1 extends Fragment {
         ImageView btnClr4 = view.findViewById(R.id.color4);
         btnClr4.setOnClickListener(v -> handleImageClick(btnClr4.getId() == trueButtonId));
 
-//        ImageView btnClr1 = view.findViewById(R.id.color1);
-//        btnClr1.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                args.putInt(WinOrLoseFragment.RESULT_KEY, WinOrLoseFragment.RESULT_VICTORY); // Remplacez RESULT_VICTORY par RESULT_DEFEAT pour indiquer la défaite
-//
-//                // Ajoutez les données au fragment
-//                winOrLoseFragment.setArguments(args);
-//
-//                // Commencez une transaction pour remplacer le fragment actuel par WinOrLoseFragment
-//                fragmentManager.beginTransaction()
-//                        .replace(R.id.fragmentContainerView, winOrLoseFragment) // Remplace le fragment_container par WinOrLoseFragment
-//                        .addToBackStack(null) // Ajoute la transaction à la pile de retour arrière
-//                        .commit();
-//            }
-//        });
-//
-//        ImageView btnClr2 = view.findViewById(R.id.color2);
-//        btnClr2.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//
-//                args.putInt(WinOrLoseFragment.RESULT_KEY, WinOrLoseFragment.RESULT_DEFEAT); // Remplacez RESULT_VICTORY par RESULT_DEFEAT pour indiquer la défaite
-//
-//                // Ajoutez les données au fragment
-//                winOrLoseFragment.setArguments(args);
-//
-//                // Commencez une transaction pour remplacer le fragment actuel par WinOrLoseFragment
-//                fragmentManager.beginTransaction()
-//                        .replace(R.id.fragmentContainerView, winOrLoseFragment) // Remplace le fragment_container par WinOrLoseFragment
-//                        .addToBackStack(null) // Ajoute la transaction à la pile de retour arrière
-//                        .commit();
-//            }
-//        });
-
     }
 
     private void generateGame(View rootView) {
@@ -199,7 +164,7 @@ public class Couleur1 extends Fragment {
 
         // Afficher la couleur à deviner
 
-        trueColorTextView.setText("Trouve la couleur " + trueColorText + " !");
+        trueColorTextView.setText(trueColorText);
 
         // Utiliser les méthodes pour obtenir le code de chaque couleur
         // Génération d'un nombre aléatoire entre 1 et 4 pour décider de la bonne couleur
