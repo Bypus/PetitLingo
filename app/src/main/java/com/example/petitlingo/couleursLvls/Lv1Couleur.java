@@ -1,4 +1,4 @@
-package com.example.petitlingo.couleurs;
+package com.example.petitlingo.couleursLvls;
 
 import android.annotation.SuppressLint;
 
@@ -59,27 +59,27 @@ public class Lv1Couleur extends Fragment {
 
         // Génération des couleurs de manière aléatoire + vérification qu'il n'y ai pas deux fois la même
         Log.d("ColorPicker", "Colors Map: " + colorsMap.toString());
-        this.randomColor1 = ColorPicker.pickRandomColor(colorsMap);
+        this.randomColor1 = Couleurs.pickRandomColor(colorsMap);
         Log.d("ColorPicker", "Random Color 1: " + randomColor1);
-        this.randomColor2 = ColorPicker.pickRandomColor(colorsMap);
+        this.randomColor2 = Couleurs.pickRandomColor(colorsMap);
         while (Objects.equals(this.randomColor1, this.randomColor2)){
-            this.randomColor2 = ColorPicker.pickRandomColor(colorsMap);
+            this.randomColor2 = Couleurs.pickRandomColor(colorsMap);
         }
-        this.randomColor3 = ColorPicker.pickRandomColor(colorsMap);
+        this.randomColor3 = Couleurs.pickRandomColor(colorsMap);
         while (Objects.equals(this.randomColor3, this.randomColor1) || Objects.equals(this.randomColor3, this.randomColor2)){
-            this.randomColor3 = ColorPicker.pickRandomColor(colorsMap);
+            this.randomColor3 = Couleurs.pickRandomColor(colorsMap);
         }
-        this.trueColor = ColorPicker.pickRandomColor(colorsMap);
+        this.trueColor = Couleurs.pickRandomColor(colorsMap);
         this.trueColorText = Couleurs.getTextForColorCode(colorsMap, this.trueColor);
         while (Objects.equals(this.trueColor, this.randomColor1) || Objects.equals(this.trueColor, this.randomColor2) || Objects.equals(this.trueColor, this.randomColor3)){
-            this.trueColor = ColorPicker.pickRandomColor(colorsMap);
+            this.trueColor = Couleurs.pickRandomColor(colorsMap);
             this.trueColorText = Couleurs.getTextForColorCode(colorsMap, this.trueColor);
         }
     }
 
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View rootView = inflater.inflate(R.layout.fragment_couleur1, container, false);
+        View rootView = inflater.inflate(R.layout.fragment_lvl1_couleur, container, false);
         instanciateView();
         generateGame(rootView);
 
