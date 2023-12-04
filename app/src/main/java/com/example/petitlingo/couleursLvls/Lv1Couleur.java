@@ -31,6 +31,7 @@ import java.util.Objects;
  */
 @SuppressLint("ValidFragment")
 public class Lv1Couleur extends Fragment {
+    private static final Integer VICTORY_POINTS = 5;
     private static Couleurs couleurs;
 
     private String randomColor1;
@@ -113,11 +114,24 @@ public class Lv1Couleur extends Fragment {
     @SuppressLint("SetTextI18n")
     private void handleImageClick(boolean isVictory) {
         Bundle args = new Bundle();
-        if (isVictory){
+        if (isVictory && (pointsText < VICTORY_POINTS)){
             pointsText += 1;
-            pointsTextView.setText(pointsText.toString());
-            instanciateView();
-            generateGame(this.getView());
+            if (pointsText == VICTORY_POINTS){
+                args.putInt(WinOrLoseFragment.RESULT_KEY, WinOrLoseFragment.RESULT_VICTORY);
+                args.putInt(WinOrLoseFragment.POINTS_KEY, pointsText);
+                args.putInt(WinOrLoseFragment.POINTS_LIFE, livesText);
+                WinOrLoseFragment winOrLoseFragment = new WinOrLoseFragment();
+                winOrLoseFragment.setArguments(args);
+
+                requireActivity().getSupportFragmentManager().beginTransaction()
+                        .replace(R.id.fragmentContainerView, winOrLoseFragment)
+                        .addToBackStack(null)
+                        .commit();
+            } else {
+                pointsTextView.setText(pointsText.toString());
+                instanciateView();
+                generateGame(this.getView());
+            }
         } else {
             livesText -= 1;
             livesTextView.setText(livesText.toString());
@@ -133,19 +147,6 @@ public class Lv1Couleur extends Fragment {
                         .commit();
             }
         }
-
-        if (pointsText == 5){
-            args.putInt(WinOrLoseFragment.RESULT_KEY, WinOrLoseFragment.RESULT_VICTORY);
-            args.putInt(WinOrLoseFragment.POINTS_KEY, pointsText);
-            args.putInt(WinOrLoseFragment.POINTS_LIFE, livesText);
-            WinOrLoseFragment winOrLoseFragment = new WinOrLoseFragment();
-            winOrLoseFragment.setArguments(args);
-
-            requireActivity().getSupportFragmentManager().beginTransaction()
-                    .replace(R.id.fragmentContainerView, winOrLoseFragment)
-                    .addToBackStack(null)
-                    .commit();
-        }
     }
 
     @Override
@@ -157,15 +158,6 @@ public class Lv1Couleur extends Fragment {
 
     private void generateGame(View rootView) {
         // Initialisation des TextView
-        TextView viesTextView = rootView.findViewById(R.id.colorLives);
-        TextView pointsTextView = rootView.findViewById(R.id.colorPoints);
-
-
-        // Initialisation des ImageView
-        ImageView color1View = rootView.findViewById(R.id.color1);
-        ImageView color2View = rootView.findViewById(R.id.color2);
-        ImageView color3View = rootView.findViewById(R.id.color3);
-        ImageView color4View = rootView.findViewById(R.id.color4);
         TextView trueColorTextView = rootView.findViewById(R.id.trueColorText);
 
         trueColorTextView.setText(trueColorText);
