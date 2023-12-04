@@ -94,11 +94,11 @@ public class TypesFragment extends Fragment {
                                     fragment = couleur1fragment.newInstance();
                                     break;
                                 case 2:
-//                                    Lv2Couleur couleur2fragment = new Lv2Couleur();
+                                    // TODO: Lv2Couleur couleur2fragment = new Lv2Couleur();
                                     fragment = new Fragment(); // couleur2fragment.newInstance();
                                     break;
                                 case 3:
-//                                    Lv2Couleur couleur3fragment = new Lv3Couleur();
+                                    // TODO: Lv2Couleur couleur3fragment = new Lv3Couleur();
                                     fragment = new Fragment(); // couleur3fragment.newInstance();
                                     break;
                                 // Agrega más casos según sea necesario
@@ -113,11 +113,13 @@ public class TypesFragment extends Fragment {
                                     .commit();
 
                             break;
+//                            TODO: case "Vetement":
 //                        case "Vetement":
 //                            Vetement vetement1fragment = new Vetement();
 //                            fragment = vetement1fragment;
 //                            break;
                         default:
+                            // Si aucun fragment n'est trouvé, affiche un fragment vide
                             fragment = new Nvl1Fragment();
                             break;
                     }

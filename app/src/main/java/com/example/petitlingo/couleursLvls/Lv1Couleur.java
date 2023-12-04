@@ -114,16 +114,20 @@ public class Lv1Couleur extends Fragment {
     @SuppressLint("SetTextI18n")
     private void handleImageClick(boolean isVictory) {
         Bundle args = new Bundle();
+
         if (isVictory && (pointsText < VICTORY_POINTS)){
             pointsText += 1;
             if (pointsText == VICTORY_POINTS){
-                args.putInt(WinOrLoseFragment.RESULT_KEY, WinOrLoseFragment.RESULT_VICTORY);
-                args.putInt(WinOrLoseFragment.POINTS_KEY, pointsText);
-                args.putInt(WinOrLoseFragment.POINTS_LIFE, livesText);
                 WinOrLoseFragment winOrLoseFragment = new WinOrLoseFragment();
+
+                args.putInt(winOrLoseFragment.RESULT_KEY, winOrLoseFragment.RESULT_VICTORY);
+                args.putInt(winOrLoseFragment.POINTS_KEY, pointsText);
+                args.putInt(winOrLoseFragment.POINTS_LIFE, livesText);
                 winOrLoseFragment.setArguments(args);
 
                 requireActivity().getSupportFragmentManager().beginTransaction()
+                        .remove(this)
+                        .setCustomAnimations(R.anim.fade_in, R.anim.fade_out)
                         .replace(R.id.fragmentContainerView, winOrLoseFragment)
                         .addToBackStack(null)
                         .commit();
@@ -136,12 +140,15 @@ public class Lv1Couleur extends Fragment {
             livesText -= 1;
             livesTextView.setText(livesText.toString());
             if (livesText == 0){
-                args.putInt(WinOrLoseFragment.RESULT_KEY, WinOrLoseFragment.RESULT_DEFEAT);
-                args.putInt(WinOrLoseFragment.POINTS_KEY, pointsText);
                 WinOrLoseFragment winOrLoseFragment = new WinOrLoseFragment();
+
+                args.putInt(winOrLoseFragment.RESULT_KEY, winOrLoseFragment.RESULT_DEFEAT);
+                args.putInt(winOrLoseFragment.POINTS_KEY, pointsText);
+
                 winOrLoseFragment.setArguments(args);
 
                 requireActivity().getSupportFragmentManager().beginTransaction()
+                        .setCustomAnimations(R.anim.fade_in, R.anim.fade_out)
                         .replace(R.id.fragmentContainerView, winOrLoseFragment)
                         .addToBackStack(null)
                         .commit();
