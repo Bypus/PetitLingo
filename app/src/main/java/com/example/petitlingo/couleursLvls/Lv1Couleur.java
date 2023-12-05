@@ -14,6 +14,8 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -167,6 +169,9 @@ public class Lv1Couleur extends Fragment {
         // Initialisation des TextView
         TextView trueColorTextView = rootView.findViewById(R.id.trueColorText);
 
+        Animation animation = AnimationUtils.loadAnimation(getContext(), R.anim.shine_animation);
+
+        trueColorTextView.startAnimation(animation);
         trueColorTextView.setText(trueColorText);
 
         // Utiliser les méthodes pour obtenir le code de chaque couleur
